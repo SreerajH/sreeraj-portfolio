@@ -16,9 +16,9 @@ const ITEMS = [
     body: "Completed Google's UX Design Professional Certificate — covering research, wireframing, prototyping, and usability testing.",
   },
   {
-    year: "2024",
+    year: "2025-26",
     title: "Design Intern",
-    place: "GoPratle",
+    place: "Avado Pvt Ltd",
     body: "Worked on product flows and visual design for a consumer app. First taste of shipping design decisions to real users.",
   },
 ];
