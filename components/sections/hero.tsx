@@ -1,10 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { BackgroundPaths } from "@/components/ui/background-paths";
 import { Magnetic } from "@/components/layout/magnetic";
+
+function scrollToSection(id: string) {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
 
 const HEADLINE_WORDS: Array<{ text: string; italic?: boolean }> = [
   { text: "Crafting" },
@@ -113,22 +119,24 @@ export function Hero() {
           className="mt-10 flex flex-wrap items-center gap-3"
         >
           <Magnetic>
-            <Link
-              href="#work"
+            <button
+              type="button"
+              onClick={() => scrollToSection("work")}
               className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-medium text-[#0A0A0A] transition-transform"
             >
               View work
               <ArrowDown className="h-4 w-4" />
-            </Link>
+            </button>
           </Magnetic>
           <Magnetic>
-            <Link
-              href="#contact"
+            <button
+              type="button"
+              onClick={() => scrollToSection("contact")}
               className="inline-flex items-center gap-2 rounded-full border border-border-hair px-5 py-3 text-sm text-text transition-colors hover:border-text"
             >
               Get in touch
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </button>
           </Magnetic>
         </motion.div>
       </div>

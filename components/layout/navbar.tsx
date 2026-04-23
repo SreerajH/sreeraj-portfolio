@@ -7,10 +7,17 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const LINKS = [
-  { href: "#work", label: "Work" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { id: "work", label: "Work" },
+  { id: "about", label: "About" },
+  { id: "contact", label: "Contact" },
 ];
+
+function scrollToSection(id: string) {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -52,24 +59,26 @@ export function Navbar() {
 
         <ul className="hidden items-center gap-8 md:flex">
           {LINKS.map((l) => (
-            <li key={l.href}>
-              <Link
-                href={l.href}
+            <li key={l.id}>
+              <button
+                type="button"
+                onClick={() => scrollToSection(l.id)}
                 className="text-sm text-text-muted transition-colors hover:text-text"
               >
                 {l.label}
-              </Link>
+              </button>
             </li>
           ))}
         </ul>
 
         <div className="flex items-center gap-3">
-          <Link
-            href="#contact"
+          <button
+            type="button"
+            onClick={() => scrollToSection("contact")}
             className="hidden rounded-full border border-border-hair px-4 py-2 text-sm text-text transition-colors hover:border-accent hover:bg-accent hover:text-[#0A0A0A] md:inline-block"
           >
             Let&apos;s talk
-          </Link>
+          </button>
           <button
             type="button"
             onClick={() => setOpen(true)}
@@ -104,7 +113,7 @@ export function Navbar() {
             <ul className="flex flex-1 flex-col items-start justify-center gap-6 px-8">
               {LINKS.map((l, i) => (
                 <motion.li
-                  key={l.href}
+                  key={l.id}
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
@@ -113,13 +122,16 @@ export function Navbar() {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
-                  <Link
-                    href={l.href}
-                    onClick={() => setOpen(false)}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setOpen(false);
+                      scrollToSection(l.id);
+                    }}
                     className="font-serif text-5xl tracking-tight text-text"
                   >
                     {l.label}
-                  </Link>
+                  </button>
                 </motion.li>
               ))}
               <motion.li
@@ -131,13 +143,16 @@ export function Navbar() {
                 }}
                 className="mt-4"
               >
-                <Link
-                  href="#contact"
-                  onClick={() => setOpen(false)}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    scrollToSection("contact");
+                  }}
                   className="inline-block rounded-full border border-accent bg-accent px-5 py-2 text-sm text-[#0A0A0A]"
                 >
                   Let&apos;s talk
-                </Link>
+                </button>
               </motion.li>
             </ul>
           </motion.div>
