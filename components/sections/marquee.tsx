@@ -7,7 +7,7 @@ const WORDS = [
   "TAILWIND",
   "TYPESCRIPT",
   "SHADCN/UI",
-  "CLAUDE CODE",
+  "VS CODE",
   "UX RESEARCH",
 ];
 
