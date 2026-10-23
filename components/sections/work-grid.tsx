@@ -5,29 +5,34 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import { AnimatedText } from "@/components/ui/animated-underline-text";
+import { WorksWheel, type WorksWheelItem } from "@/components/ui/works-wheel";
 import { projects } from "@/lib/projects";
+
+const WHEEL_ITEMS: WorksWheelItem[] = projects.map((p) => ({
+  title: p.name,
+  image: p.thumbnail,
+  href: p.liveUrl ?? p.caseStudyUrl,
+  external: Boolean(p.liveUrl),
+  meta: `${p.category} · ${p.year}`,
+}));
 
 export function WorkGrid() {
   return (
-    <section id="work" className="relative py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-16 flex items-end justify-between">
-          <div>
-            <p className="eyebrow mb-4">Work · 2025</p>
-            <AnimatedText
-              text="Selected Work"
-              as="h2"
-              className="text-text"
-            />
-          </div>
-          <p className="hidden max-w-xs text-sm text-text-muted md:block">
-            A mix of coded web projects and designed mobile apps. Each one
-            shipped — or close to it.
-          </p>
+    <section id="work" className="relative">
+      {/* Tablet and up: the scroll-driven wheel. On a phone its cards and type
+          shrink past reading, so phones get the stacked cards below. */}
+      <div className="hidden md:block">
+        <WorksWheel items={WHEEL_ITEMS} label="Selected Work" eyebrow="Work" />
+      </div>
+
+      <div className="mx-auto max-w-6xl px-6 py-24 md:hidden">
+        <div className="mb-16">
+          <p className="eyebrow mb-4">Work · 2025</p>
+          <AnimatedText text="Selected Work" as="h2" className="text-text" />
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 md:gap-8">
-          {projects.map((p, i) => {
+        <div className="grid gap-6">
+          {projects.map((p) => {
             const href = p.liveUrl ?? p.caseStudyUrl ?? "#";
             const external = Boolean(p.liveUrl);
             return (
@@ -36,11 +41,7 @@ export function WorkGrid() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 0.7,
-                  delay: (i % 2) * 0.08,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Link
                   href={href}
@@ -58,7 +59,7 @@ export function WorkGrid() {
                       <img
                         src={p.thumbnail}
                         alt={p.name}
-                        loading={i < 2 ? "eager" : "lazy"}
+                        loading="lazy"
                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.08]"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-bg/95 via-bg/20 to-transparent" />
@@ -73,7 +74,7 @@ export function WorkGrid() {
 
                       <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6">
                         <div>
-                          <h3 className="font-serif text-2xl tracking-tight text-white md:text-3xl">
+                          <h3 className="font-serif text-2xl tracking-tight text-white">
                             {p.name}
                           </h3>
                           <p className="mt-1 max-w-sm text-sm text-white/70">

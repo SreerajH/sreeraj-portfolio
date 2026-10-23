@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const ITEMS = [
   {
     year: "2025",
-    title: "Freelance — UI/UX Designer & Developer",
+    title: "Freelance UI/UX Designer & Developer",
     place: "Fiverr · LinkedIn",
     body: "Active on Fiverr and LinkedIn. Shipping websites and mobile app designs for SaaS founders and early-stage startups.",
   },
@@ -13,7 +13,7 @@ const ITEMS = [
     year: "2025",
     title: "Google UX Certificate",
     place: "Coursera · Completed",
-    body: "Completed Google's UX Design Professional Certificate — covering research, wireframing, prototyping, and usability testing.",
+    body: "Completed Google's UX Design Professional Certificate, covering research, wireframing, prototyping, and usability testing.",
   },
   {
     year: "2025-26",

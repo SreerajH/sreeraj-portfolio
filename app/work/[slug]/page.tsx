@@ -22,10 +22,10 @@ export async function generateMetadata(
   const project = getProject(slug);
   if (!project) return {};
   return {
-    title: `${project.name} — Case Study`,
+    title: `${project.name} Case Study`,
     description: project.description,
     openGraph: {
-      title: `${project.name} — Case Study`,
+      title: `${project.name} Case Study`,
       description: project.description,
       images: [project.thumbnail],
     },

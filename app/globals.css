@@ -20,6 +20,8 @@
     "Segoe UI", Roboto, sans-serif;
   --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
   --font-heading: var(--font-serif);
+  --font-display: var(--font-archivo-black), "Arial Black", ui-sans-serif,
+    sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Shadcn token aliases (kept so shadcn components still work) */
@@ -117,6 +119,14 @@
   font-size: clamp(2rem, 3.5vw, 3rem);
   line-height: 1.1;
   letter-spacing: -0.01em;
+}
+
+/* Steel fade for big display headings: dim at the top, near-white at the base. */
+@utility gradient-heading {
+  background: linear-gradient(180deg, var(--text-dim) 0%, var(--text) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Archivo_Black, Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -16,16 +16,24 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
+// Display face for the hero poster headline only.
+const archivoBlack = Archivo_Black({
+  variable: "--font-archivo-black",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://sreerajh.com"),
   title: {
-    default: "Sreeraj H — UI/UX Designer & Developer",
-    template: "%s — Sreeraj H",
+    default: "Sreeraj H | UI/UX Designer & Developer",
+    template: "%s | Sreeraj H",
   },
   description:
     "Freelance UI/UX designer & developer based in Bengaluru, India. Crafting websites and mobile apps with motion, type, and detail.",
   openGraph: {
-    title: "Sreeraj H — UI/UX Designer & Developer",
+    title: "Sreeraj H | UI/UX Designer & Developer",
     description:
       "Freelance UI/UX designer & developer based in Bengaluru, India.",
     images: ["/og-image.png"],
@@ -44,7 +52,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${instrumentSerif.variable} h-full antialiased`}
+      className={`${inter.variable} ${instrumentSerif.variable} ${archivoBlack.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-bg text-text font-sans">{children}</body>
     </html>

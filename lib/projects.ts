@@ -70,7 +70,7 @@ export const projects: Project[] = [
     name: "Wayfare",
     category: "MOBILE APP",
     description:
-      "Thoughtful travel planning app — booking flow, itineraries, tickets.",
+      "Travel planning app with booking flow, itineraries and tickets.",
     thumbnail: "/projects/wayfare.jpg",
     liveUrl: null,
     caseStudyUrl: "/work/wayfare",
@@ -85,7 +85,7 @@ export const projects: Project[] = [
     name: "HealthHub",
     category: "MOBILE APP",
     description:
-      "Family health records app — profiles, appointments, records management.",
+      "Family health records app for profiles, appointments and records.",
     thumbnail: "/projects/healthyhub.jpg",
     liveUrl: null,
     caseStudyUrl: "/work/healthyhub",

@@ -30,29 +30,29 @@ export const caseStudies: Record<string, CaseStudy> = {
     slug: "wayfare",
     cover: WAYFARE.loading,
     problem: [
-      "Travelers today juggle five or more apps to plan a single trip — flights in one, stays in another, itinerary in Notes, tickets buried in email. The cognitive overhead kills the joy of planning a trip across Asia.",
-      "Wayfare's goal was to collapse the end-to-end trip flow — from destination discovery through day-of boarding — into a single calm, type-led app with a high-contrast white-and-dark aesthetic and editorial-style destination cards.",
+      "Travelers today juggle five or more apps to plan a single trip: flights in one, stays in another, itinerary in Notes, tickets buried in email. The cognitive overhead kills the joy of planning a trip across Asia.",
+      "Wayfare's goal was to collapse the whole trip flow, from destination discovery to day-of boarding, into a single calm, type-led app with a high-contrast white-and-dark aesthetic and editorial-style destination cards.",
     ],
     research: [
       "12 user interviews with frequent travelers planning 7+ day trips across South and Southeast Asia.",
       "Top frustration: switching contexts between booking apps to find reference numbers on day of travel.",
-      "Users wanted a single chronological view of a trip — not dashboards, not tabs.",
-      "Confidence was driven by typography and whitespace — not by feature count or iconography.",
+      "Users wanted a single chronological view of a trip. Not dashboards, not tabs.",
+      "Confidence came from typography and whitespace, not from feature count or iconography.",
     ],
     decisions: [
       {
         title: "Instrument Sans as the voice",
-        body: "Set Instrument Sans at display scale for city names, dates, and section labels. The type does almost all of the UI work — there is very little chrome.",
+        body: "Set Instrument Sans at display scale for city names, dates, and section labels. The type does almost all of the UI work, so there is very little chrome.",
         image: WAYFARE.instrumentSans,
       },
       {
         title: "Editorial destination cards",
-        body: "Discover surfaces full-bleed photography of Asian destinations — Bali, Kyoto, Da Nang, Hoi An — with a single line of copy. Each card is a full tap target.",
+        body: "Discover surfaces full-bleed photography of Asian destinations like Bali, Kyoto, Da Nang and Hoi An, with a single line of copy. Each card is a full tap target.",
         image: WAYFARE.cards,
       },
       {
         title: "Itinerary as a single scroll",
-        body: "Replaced the typical tabbed trip IA with one vertical itinerary. Every flight, stay, and activity sits in chronological order — day-of mode promotes the next item.",
+        body: "Replaced the typical tabbed trip IA with one vertical itinerary. Every flight, stay, and activity sits in chronological order, and day-of mode promotes the next item.",
         image: WAYFARE.itinerary,
       },
     ],
@@ -71,7 +71,7 @@ export const caseStudies: Record<string, CaseStudy> = {
         { label: "Screens designed", value: "36" },
       ],
       lessons:
-        "The itinerary is the product. Instrument Sans at display scale replaces most of what a chrome-heavy travel app would have used — the rest is whitespace and photography.",
+        "The itinerary is the product. Instrument Sans at display scale replaces most of what a chrome-heavy travel app would have used. The rest is whitespace and photography.",
     },
   },
   healthyhub: {
@@ -79,28 +79,28 @@ export const caseStudies: Record<string, CaseStudy> = {
     cover: HEALTH.loading,
     problem: [
       "Indian families share one phone, one set of health records, and zero source of truth. Reports live in WhatsApp, prescriptions in drawers, and appointments in memory.",
-      "HealthHub is one calm home for the family's profiles, appointments, and records — built on a trustworthy deep-blue (#3A4F7A) palette designed to read as medical without feeling clinical.",
+      "HealthHub is one calm home for the family's profiles, appointments, and records, built on a trustworthy deep-blue (#3A4F7A) palette designed to read as medical without feeling clinical.",
     ],
     research: [
       "6 contextual interviews with Indian households across Tier 1 and Tier 2 cities.",
-      "Primary user: the 40–55-year-old parent managing care for 3–4 family members.",
-      "Most failure points happened at the clinic counter — 'which report, from which day, for which member?'",
+      "Primary user: the 40 to 55 year old parent managing care for 3 or 4 family members.",
+      "Most failure points happened at the clinic counter: 'which report, from which day, for which member?'",
       "Users expected a UPI-style profile switcher at the top of every screen, not a dropdown.",
     ],
     decisions: [
       {
         title: "#3A4F7A as the single anchor",
-        body: "One deep-blue primary drives every surface — from the profile header to the appointment CTAs. No gradients, no secondary brand colors. It reads as trustworthy and clinical in the same breath.",
+        body: "One deep-blue primary drives every surface, from the profile header to the appointment CTAs. No gradients, no secondary brand colors. It reads as trustworthy and clinical in the same breath.",
         image: HEALTH.color,
       },
       {
         title: "Profiles at the top of every screen",
-        body: "A UPI-style avatar row sits above the fold on every tab. Whose profile is active is never a guess — it is always the first thing you see.",
+        body: "A UPI-style avatar row sits above the fold on every tab. Whose profile is active is never a guess. It is always the first thing you see.",
         image: HEALTH.profiles,
       },
       {
         title: "Records as the backbone",
-        body: "A dedicated Records tab stores prescriptions, lab reports, and discharge summaries — sortable by member and by date, with full-bleed viewing on tap.",
+        body: "A dedicated Records tab stores prescriptions, lab reports, and discharge summaries, sortable by member and by date, with full-bleed viewing on tap.",
         image: HEALTH.records,
       },
     ],
