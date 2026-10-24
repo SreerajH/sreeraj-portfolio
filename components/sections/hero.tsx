@@ -7,20 +7,20 @@ export function Hero() {
     <section className="pt-16">
       <MascotPortfolioHero
         height="calc(100svh - 4rem)"
-        title="Sreeraj H, UI/UX Designer & Developer"
+        title="Designed. Built. Shipped. Sreeraj H, UI/UX designer and developer"
         index="Portfolio"
         discipline="Sreeraj H"
         tagline="UI/UX Designer & Developer"
-        collection={["Selected", "Works"]}
+        collection={["Design", "Code"]}
         reel={["Available for work", "Bengaluru, India"]}
-        year="2026"
-        initials="UI/UX"
+        // Three beats of the process, one per line.
+        year="Designed."
+        initials=""
         badge="Hire me"
-        line2="Designer"
-        line3="Developer"
-        word="Work"
-        verticalTag="Folio"
-        bracketed="S"
+        line2="Built."
+        line3="Shipped."
+        word=""
+        headlineScale={1.15}
         seekingLabel="Open to*"
         seeking="New projects"
         href="#contact"

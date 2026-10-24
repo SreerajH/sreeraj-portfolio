@@ -1,6 +1,9 @@
 import { cn } from "@/lib/utils";
 import { FadeIn } from "@/components/ui/fade-in";
-import { ScrollRevealText } from "@/components/ui/scroll-reveal-text";
+import {
+  ScrollRevealText,
+  type RevealSegment,
+} from "@/components/ui/scroll-reveal-text";
 import { Magnetic } from "@/components/layout/magnetic";
 
 const ASSETS =
@@ -41,11 +44,23 @@ const CORNERS = [
 
 const FLOAT_SECONDS = [7, 8.5, 6.5, 9];
 
-const COPY = [
-  { text: "I'm Sreeraj, a UI/UX designer who also " },
-  { text: "writes the code.", accent: true },
+// Each craft word is set the way it reads: Typography hand-lettered,
+// com{pos}ition framed, color in colour.
+const COPY: RevealSegment[] = [
+  { text: "I'm Sreeraj H, a UI/UX designer who also " },
+  { text: "writes the code.", style: "accent" },
   {
-    text: " I design websites and mobile apps that feel clear and effortless, then build them myself, so nothing gets lost between design and launch. Based in Bengaluru, open to new projects.",
+    text: " Since 2025 I've crafted websites and apps that balance creativity with precision, obsessing over ",
+  },
+  { text: "Typography", style: "script" },
+  { text: ", com" },
+  { text: "{", style: "accent" },
+  { text: "pos" },
+  { text: "}", style: "accent" },
+  { text: "ition and " },
+  { text: "color", style: "rainbow" },
+  {
+    text: ". Then I build it myself, so nothing gets lost between design and launch.",
   },
 ];
 
@@ -99,7 +114,7 @@ export function About() {
 
           <ScrollRevealText
             segments={COPY}
-            className="max-w-[560px] text-center font-medium leading-relaxed text-text"
+            className="max-w-[620px] text-center font-medium leading-relaxed text-text"
             style={{ fontSize: "clamp(1rem, 2vw, 1.35rem)" }}
           />
         </div>

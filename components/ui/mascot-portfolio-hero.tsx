@@ -15,6 +15,8 @@ export type MascotPortfolioHeroProps = {
   minHeight?: string
   /** Read out in place of the headline, which is set in decorative pieces. */
   title?: string
+  /** Multiplies the headline size, e.g. to fill the space when line four is dropped. */
+  headlineScale?: number
 
   /* ---- top rule ---- */
   /** Set in the accent half of the index pill, top left. */
@@ -39,7 +41,7 @@ export type MascotPortfolioHeroProps = {
   line2?: string
   /** Third headline line. Its last letter gets the looping swash. */
   line3?: string
-  /** Fourth line, the big one: set before the vertical tag. */
+  /** Fourth line, the big one: set before the vertical tag. Empty drops the line. */
   word?: string
   /** The vertical label between `word` and the bracketed letters. */
   verticalTag?: string
@@ -230,7 +232,7 @@ const CSS = `
 .mph-reel{grid-column:5;display:flex;align-items:center;gap:.8em;font-size:.85em;text-align:right;}
 .mph-reel i{display:block;width:1.9em;height:1.9em;border-radius:50%;background:var(--mph-accent);border:.12cqw solid var(--mph-ink);flex:none;}
 
-.mph-h1{position:absolute;left:8.8%;top:15.5%;margin:0;font-family:var(--mph-display);font-weight:400;font-size:6.5cqw;line-height:1.04;letter-spacing:-.045em;text-transform:uppercase;color:var(--mph-ink);}
+.mph-h1{position:absolute;left:8.8%;top:15.5%;margin:0;font-family:var(--mph-display);font-weight:400;font-size:calc(6.5cqw * var(--mph-h1-scale));line-height:1.04;letter-spacing:-.045em;text-transform:uppercase;color:var(--mph-ink);}
 .mph-line{display:block;width:max-content;white-space:nowrap;position:relative;}
 .mph-ch{display:inline-block;transition:transform .35s cubic-bezier(.3,1.6,.5,1),color .2s;}
 .mph-ch:hover{transform:translateY(-.08em) rotate(-4deg);color:var(--mph-accent);}
@@ -255,7 +257,7 @@ const CSS = `
 .mph-star{display:inline-block;font-size:.66em;vertical-align:.5em;margin-left:.02em;transition:transform .6s cubic-bezier(.3,1.6,.5,1);}
 .mph-l4:hover .mph-star{transform:rotate(180deg) scale(1.2);}
 
-.mph-pill{position:absolute;left:8.8%;top:75.5%;display:flex;align-items:stretch;font-size:1.72cqw;font-weight:800;line-height:1;border-radius:999px;}
+.mph-pill{position:absolute;left:8.8%;top:70%;display:flex;align-items:stretch;font-size:1.72cqw;font-weight:800;line-height:1;border-radius:999px;}
 .mph-pill::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;animation:mph-pulse 2.8s cubic-bezier(.22,1,.36,1) infinite;}
 .mph-pill-a{position:relative;z-index:1;background:var(--mph-surface);color:var(--mph-ink);border:.16cqw solid var(--mph-ink);border-radius:999px;padding:.72em 1.25em;}
 .mph-pill-b{display:inline-flex;align-items:center;gap:.5em;margin-left:-1.4em;padding:.72em 3.4em .72em 3.1em;background:var(--mph-accent);color:var(--mph-on-accent);border:.16cqw solid var(--mph-ink);border-radius:0 999px 999px 0;text-decoration:none;transition:background .25s,color .25s,padding .35s cubic-bezier(.3,1.4,.5,1);}
@@ -263,11 +265,11 @@ const CSS = `
 .mph-pill-b:hover,.mph-pill-b:focus-visible{background:var(--mph-ink);color:var(--mph-paper);padding-right:2.4em;outline:none;}
 .mph-pill-b:hover em,.mph-pill-b:focus-visible em{width:1em;opacity:1;}
 
-.mph-flower{position:absolute;left:35.4%;top:67%;width:7.4%;aspect-ratio:1;animation:mph-spin 22s linear infinite;cursor:grab;}
+.mph-flower{position:absolute;left:35.4%;top:62%;width:7.4%;aspect-ratio:1;animation:mph-spin 22s linear infinite;cursor:grab;}
 .mph-flower svg{display:block;width:100%;height:100%;overflow:visible;transition:transform .5s cubic-bezier(.3,1.8,.5,1);}
 .mph-flower:hover svg{transform:scale(1.18) rotate(40deg);}
 .mph-flower path{fill:var(--mph-surface);stroke:var(--mph-ink);stroke-width:2.6;stroke-linejoin:round;}
-.mph-curl{position:absolute;left:43.2%;top:55%;width:5.6%;aspect-ratio:1;overflow:visible;pointer-events:none;}
+.mph-curl{position:absolute;left:35.5%;top:31%;width:5.6%;aspect-ratio:1;overflow:visible;pointer-events:none;}
 .mph-curl path{fill:none;stroke:var(--mph-ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;animation:mph-draw 1.4s 1s cubic-bezier(.6,0,.2,1) both;}
 
 .mph-services{position:absolute;left:4.6%;bottom:4.6%;display:flex;gap:3cqw;margin:0;padding:0;list-style:none;font-size:1.3cqw;font-weight:800;}
@@ -298,12 +300,12 @@ const CSS = `
 .mph-top{top:5cqw;left:6%;right:6%;grid-template-columns:auto 1fr auto;font-size:2.5cqw;}
 .mph-tagline,.mph-brace{display:none;}
 .mph-reel{grid-column:3;}
-.mph-h1{left:7%;top:23cqw;font-size:11.4cqw;}
+.mph-h1{left:7%;top:23cqw;font-size:calc(11.4cqw * var(--mph-h1-scale));}
 .mph-badge{left:auto;right:0;top:-2.4em;font-size:.22em;}
-.mph-pill{left:7%;top:79cqw;font-size:3.5cqw;}
-.mph-flower{left:auto;right:6%;top:74cqw;width:13%;}
-.mph-curl{left:auto;right:4%;top:52cqw;width:11%;}
-.mph-services{left:7%;right:7%;bottom:auto;top:93cqw;flex-wrap:wrap;gap:1.6cqw 5cqw;font-size:3cqw;}
+.mph-pill{left:7%;top:72cqw;font-size:3.5cqw;}
+.mph-flower{left:auto;right:5%;top:67cqw;width:13%;}
+.mph-curl{left:54%;right:auto;top:38cqw;width:11%;}
+.mph-services{left:7%;right:7%;bottom:auto;top:87cqw;flex-wrap:wrap;gap:1.6cqw 5cqw;font-size:3cqw;}
 .mph-rule-l{left:3%;top:28cqw;height:12cqw;}
 .mph-rule-r{left:95%;top:auto;bottom:40cqw;height:12cqw;}
 .mph-char{left:12%;width:76%;bottom:-.6%;}
@@ -332,6 +334,7 @@ export default function MascotPortfolioHero({
   height = "100svh",
   minHeight = "440px",
   title,
+  headlineScale = 1,
   index = "08/01",
   discipline = "Visual design",
   tagline = "Make it helpful",
@@ -511,9 +514,14 @@ export default function MascotPortfolioHero({
       </span>
     ))
 
+  // The swash loops under the last letter of line three, not under any
+  // punctuation that follows it.
   const l3 = Array.from(line3)
-  const l3Head = l3.slice(0, -1).join("")
-  const l3Tail = l3[l3.length - 1] ?? ""
+  let l3At = l3.length - 1
+  while (l3At > 0 && !/[p{L}p{N}]/u.test(l3[l3At])) l3At--
+  const l3Head = l3.slice(0, l3At).join("")
+  const l3Tail = l3[l3At] ?? ""
+  const l3After = l3.slice(l3At + 1).join("")
   const greeting = said >= 0 ? greetings[said % greetings.length] : greetings[0]
 
   const vars = {
@@ -524,6 +532,7 @@ export default function MascotPortfolioHero({
     "--mph-ink": ink,
     "--mph-sans": SANS_STACK,
     "--mph-display": DISPLAY_STACK,
+    "--mph-h1-scale": headlineScale,
     height,
     minHeight,
   } as React.CSSProperties
@@ -578,12 +587,14 @@ export default function MascotPortfolioHero({
         <span className="mph-rule mph-rule-l" aria-hidden="true" />
         <span className="mph-rule mph-rule-r" aria-hidden="true" />
 
-        <h1 className="mph-h1" aria-label={title ?? [year, initials, line2, line3, word + bracketed].join(" ")}>
+        <h1 className="mph-h1" aria-label={title ?? [year, initials, line2, line3, word && word + bracketed].filter(Boolean).join(" ")}>
           <span className="mph-line" aria-hidden="true">
             {chars(year)}
-            <svg className="mph-arrow" viewBox="0 0 100 100">
-              <path d="M14 14 L84 84 M84 30 V84 H30" />
-            </svg>
+            {year && initials ? (
+              <svg className="mph-arrow" viewBox="0 0 100 100">
+                <path d="M14 14 L84 84 M84 30 V84 H30" />
+              </svg>
+            ) : null}
             {chars(initials)}
             <span className="mph-badge">
               {badge}
@@ -604,7 +615,9 @@ export default function MascotPortfolioHero({
                 />
               </svg>
             </span>
+            {chars(l3After)}
           </span>
+          {word ? (
           <span className="mph-line mph-l4" aria-hidden="true">
             {chars(word)}
             <span className="mph-vtag">
@@ -620,6 +633,7 @@ export default function MascotPortfolioHero({
             </span>
             <span className="mph-star">*</span>
           </span>
+          ) : null}
         </h1>
 
         <svg className="mph-curl" viewBox="0 0 100 100" aria-hidden="true">

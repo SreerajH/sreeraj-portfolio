@@ -12,8 +12,8 @@ import { cn } from "@/lib/utils";
 interface PointerProps {
   children: React.ReactNode;
   className?: string;
-  /** Shown in the tag that trails the arrow. */
-  name: string;
+  /** Shown in a tag that trails the arrow. Omit for the arrow alone. */
+  name?: string;
 }
 
 /**
@@ -67,7 +67,7 @@ function FollowPointer({
 }: {
   x: MotionValue<number>;
   y: MotionValue<number>;
-  name: string;
+  name?: string;
 }) {
   return (
     <motion.div
@@ -91,9 +91,11 @@ function FollowPointer({
       >
         <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z" />
       </svg>
-      <div className="w-fit whitespace-nowrap rounded-full bg-accent px-2.5 py-1 text-xs font-semibold text-[#0A0A0A] shadow-[0_6px_20px_-6px_rgba(200,255,0,0.6)]">
-        {name}
-      </div>
+      {name ? (
+        <div className="w-fit whitespace-nowrap rounded-full bg-accent px-2.5 py-1 text-xs font-semibold text-[#0A0A0A] shadow-[0_6px_20px_-6px_rgba(200,255,0,0.6)]">
+          {name}
+        </div>
+      ) : null}
     </motion.div>
   );
 }

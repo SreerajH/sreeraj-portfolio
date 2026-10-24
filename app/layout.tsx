@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Archivo_Black, Inter, Instrument_Serif } from "next/font/google";
+import {
+  Archivo_Black,
+  Inter,
+  Instrument_Serif,
+  Kaushan_Script,
+} from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -19,6 +24,14 @@ const instrumentSerif = Instrument_Serif({
 // Display face for the hero poster headline only.
 const archivoBlack = Archivo_Black({
   variable: "--font-archivo-black",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+// Brush script for the one hand-lettered word in the About copy.
+const kaushanScript = Kaushan_Script({
+  variable: "--font-kaushan",
   subsets: ["latin"],
   weight: "400",
   display: "swap",
@@ -52,7 +65,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${instrumentSerif.variable} ${archivoBlack.variable} h-full antialiased`}
+      className={`${inter.variable} ${instrumentSerif.variable} ${archivoBlack.variable} ${kaushanScript.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-bg text-text font-sans">{children}</body>
     </html>

@@ -22,6 +22,7 @@
   --font-heading: var(--font-serif);
   --font-display: var(--font-archivo-black), "Arial Black", ui-sans-serif,
     sans-serif;
+  --font-script: var(--font-kaushan), "Brush Script MT", cursive;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Shadcn token aliases (kept so shadcn components still work) */

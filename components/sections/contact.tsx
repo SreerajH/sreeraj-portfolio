@@ -145,7 +145,7 @@ export function Contact() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            <Pointer name="You">
+            <Pointer>
               <ContactForm />
             </Pointer>
           </motion.div>
