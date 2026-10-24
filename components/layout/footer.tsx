@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import { LinkedinIcon, FiverrIcon, BehanceIcon } from "@/components/ui/brand-icons";
@@ -36,7 +37,7 @@ export function Footer() {
     <footer className="border-t border-border-hair">
       <div className="mx-auto grid max-w-6xl gap-8 px-6 py-12 md:grid-cols-3 md:gap-6">
         <div>
-          <div className="font-serif text-2xl italic">SH</div>
+          <Image src="/logo.png" alt="Sreeraj H" width={207} height={206} className="h-9 w-9" />
           <p className="mt-2 text-xs text-text-dim">© 2026 Sreeraj H</p>
         </div>
 
@@ -74,7 +75,7 @@ export function Footer() {
       </div>
       <div className="border-t border-border-hair">
         <p className="mx-auto max-w-6xl px-6 py-4 text-[0.7rem] uppercase tracking-[0.15em] text-text-dim">
-          Designed &amp; built in Bengaluru. Last updated April 2026.
+          Designed &amp; built in Bengaluru. Last updated October 2026.
         </p>
       </div>
     </footer>

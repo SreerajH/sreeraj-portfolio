@@ -32,7 +32,7 @@ export function Marquee() {
       aria-label="Tech stack"
       className="group overflow-hidden border-y border-border-hair py-8"
     >
-      <div className="flex [animation:marquee_40s_linear_infinite] group-hover:[animation-play-state:paused]">
+      <div className="flex [animation:marquee_20s_linear_infinite] group-hover:[animation-play-state:paused]">
         <Row />
         <Row />
         <Row />

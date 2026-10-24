@@ -18,6 +18,30 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "ironform",
+    name: "Ironform Strength Club",
+    category: "WEB",
+    description:
+      "Gym website for a Bengaluru strength club with programs, coaches, class schedule and plans.",
+    thumbnail: "/projects/ironform.jpg",
+    liveUrl: "https://ironform-strength-club.vercel.app/",
+    tech: ["Next.js", "Tailwind", "Framer Motion"],
+    year: "2026",
+    glowColor: "orange",
+  },
+  {
+    slug: "lumina-dental",
+    name: "Lumina Dental Studio",
+    category: "WEB",
+    description:
+      "Dental clinic website with treatments, doctors, reviews and WhatsApp booking.",
+    thumbnail: "/projects/lumina-dental.jpg",
+    liveUrl: "https://lumina-dental-studio-drab.vercel.app/",
+    tech: ["Next.js", "Tailwind", "Framer Motion"],
+    year: "2026",
+    glowColor: "blue",
+  },
+  {
     slug: "luxe-estate",
     name: "Luxe Estate",
     category: "WEB",

@@ -14,12 +14,12 @@ export function Hero() {
         collection={["Selected", "Works"]}
         reel={["Available for work", "Bengaluru, India"]}
         year="2026"
-        initials="SH"
+        initials="UI/UX"
         badge="Hire me"
         line2="Designer"
         line3="Developer"
         word="Work"
-        verticalTag="UI/UX"
+        verticalTag="Folio"
         bracketed="S"
         seekingLabel="Open to*"
         seeking="New projects"

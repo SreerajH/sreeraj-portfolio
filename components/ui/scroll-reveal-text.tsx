@@ -85,9 +85,12 @@ export function ScrollRevealText({
   style?: React.CSSProperties;
 }) {
   const ref = React.useRef<HTMLParagraphElement>(null);
+  // Starts as the paragraph enters at the bottom of the screen and is fully
+  // lit once its last line is 80% of the way down - i.e. before the reader
+  // has scrolled the section into place, never half-revealed at rest.
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.8", "end 0.2"],
+    offset: ["start 1", "end 0.8"],
   });
   const reduced = useReducedMotion();
   const { tokens, total } = tokenize(segments);
