@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Mail } from "lucide-react";
-import { LinkedinIcon, FiverrIcon, BehanceIcon } from "@/components/ui/brand-icons";
-
-const QUICK = [
-  { href: "#work", label: "Work" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
-];
+import {
+  LinkedinIcon,
+  FiverrIcon,
+  BehanceIcon,
+} from "@/components/ui/brand-icons";
+import { HomeLink, SectionLink } from "@/components/layout/nav-links";
+import { SECTIONS } from "@/lib/sections";
 
 const SOCIAL = [
   {
@@ -37,19 +37,30 @@ export function Footer() {
     <footer className="border-t border-border-hair">
       <div className="mx-auto grid max-w-6xl gap-8 px-6 py-12 md:grid-cols-3 md:gap-6">
         <div>
-          <Image src="/logo.png" alt="Sreeraj H" width={207} height={206} className="h-9 w-9" />
+          <HomeLink
+            aria-label="Sreeraj H, back to top"
+            className="inline-block"
+          >
+            <Image
+              src="/logo.png"
+              alt=""
+              width={207}
+              height={206}
+              className="h-9 w-9 transition-transform duration-300 hover:rotate-[-8deg]"
+            />
+          </HomeLink>
           <p className="mt-2 text-xs text-text-dim">© 2026 Sreeraj H</p>
         </div>
 
-        <ul className="flex flex-wrap gap-5 md:justify-center">
-          {QUICK.map((l) => (
-            <li key={l.href}>
-              <Link
-                href={l.href}
-                className="text-sm text-text-muted transition-colors hover:text-text"
+        <ul className="flex flex-wrap items-center gap-8 md:justify-center">
+          {SECTIONS.map((s) => (
+            <li key={s.id}>
+              <SectionLink
+                id={s.id}
+                className="nav-link text-[15px] font-medium text-text/85 hover:text-text"
               >
-                {l.label}
-              </Link>
+                {s.label}
+              </SectionLink>
             </li>
           ))}
         </ul>

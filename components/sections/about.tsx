@@ -39,6 +39,8 @@ const CORNERS = [
   },
 ];
 
+const FLOAT_SECONDS = [7, 8.5, 6.5, 9];
+
 const COPY = [
   { text: "I'm Sreeraj, a UI/UX designer who also " },
   { text: "writes the code.", accent: true },
@@ -53,7 +55,7 @@ export function About() {
       id="about"
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-5 py-20 sm:px-8 md:px-10"
     >
-      {CORNERS.map((c) => (
+      {CORNERS.map((c, i) => (
         <FadeIn
           key={c.src}
           delay={c.delay}
@@ -62,15 +64,25 @@ export function About() {
           y={0}
           className={cn("pointer-events-none absolute z-0", c.className)}
         >
-          {/* The source art is blue/purple glass; rendered as chrome so lime
-              stays the only accent on the page. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={c.src}
-            alt=""
-            aria-hidden="true"
-            className="h-auto w-full brightness-110 contrast-110 grayscale"
-          />
+          {/* Each piece floats on its own period and phase, so they never
+              bob in step with one another. */}
+          <div
+            className="float-slow"
+            style={{
+              animationDuration: `${FLOAT_SECONDS[i]}s`,
+              animationDelay: `${-i * 1.7}s`,
+            }}
+          >
+            {/* The source art is blue/purple glass; rendered as chrome so lime
+                stays the only accent on the page. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={c.src}
+              alt=""
+              aria-hidden="true"
+              className="h-auto w-full brightness-110 contrast-110 grayscale"
+            />
+          </div>
         </FadeIn>
       ))}
 
@@ -96,7 +108,7 @@ export function About() {
           <Magnetic>
             <a
               href="#contact"
-              className="inline-block rounded-full px-8 py-3 text-xs font-medium uppercase tracking-widest text-[#0A0A0A] transition-opacity duration-200 hover:opacity-90 active:opacity-75 sm:px-10 sm:py-3.5 sm:text-sm md:px-12 md:py-4 md:text-base"
+              className="pulse-ring inline-block rounded-full px-8 py-3 text-xs font-medium uppercase tracking-widest text-[#0A0A0A] transition-opacity duration-200 hover:opacity-90 active:opacity-75 sm:px-10 sm:py-3.5 sm:text-sm md:px-12 md:py-4 md:text-base"
               style={{
                 background:
                   "linear-gradient(123deg, #7FA300 7%, #B4E600 37%, #C8FF00 72%, #E6FF8A 100%)",

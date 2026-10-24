@@ -37,6 +37,10 @@ const LINE_BASE: RGBA = { r: 255, g: 255, b: 255, a: 0.09 };
 const NODE_BASE_RADIUS = 1.8;
 const NODE_ACTIVE_RADIUS = 3.2;
 const OFF = -9999;
+/** Active colour the grid eases to while `highlight` is on. */
+const HIGHLIGHT: RGBA = { r: 255, g: 255, b: 255, a: 0.9 };
+/** Share of the gap to the highlight colour closed each frame. */
+const HIGHLIGHT_EASE = 0.1;
 
 const THEMES = {
   /** Lime: the site accent. */
@@ -44,15 +48,11 @@ const THEMES = {
     bg: "#0A0A0A",
     lineActive: { r: 200, g: 255, b: 0, a: 0.85 },
     nodeActive: { r: 200, g: 255, b: 0, a: 1 },
-    glow: "200,255,0",
-    ripple: "200,255,0",
   },
   monochrome: {
     bg: "#000000",
     lineActive: { r: 255, g: 255, b: 255, a: 0.9 },
     nodeActive: { r: 255, g: 255, b: 255, a: 1 },
-    glow: "255,255,255",
-    ripple: "255,255,255",
   },
 } as const;
 
@@ -60,6 +60,15 @@ const THEMES = {
 
 function lerpN(a: number, b: number, t: number) {
   return a + (b - a) * t;
+}
+
+function lerpRGBA(a: RGBA, b: RGBA, t: number): RGBA {
+  return {
+    r: lerpN(a.r, b.r, t),
+    g: lerpN(a.g, b.g, t),
+    b: lerpN(a.b, b.b, t),
+    a: lerpN(a.a, b.a, t),
+  };
 }
 
 function lerpColor(base: RGBA, active: RGBA, t: number): string {
@@ -134,13 +143,21 @@ export default function KineticGrid({
   children,
   className,
   globalColor = "accent",
+  highlight = false,
 }: {
   children?: ReactNode;
   className?: string;
   globalColor?: keyof typeof THEMES;
+  /** While true, the lines, nodes and ripples near the pointer turn white. */
+  highlight?: boolean;
 }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  // Read by the draw loop, so toggling it doesn't restart the canvas.
+  const highlightRef = useRef(highlight);
+  useEffect(() => {
+    highlightRef.current = highlight;
+  }, [highlight]);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -156,9 +173,17 @@ export default function KineticGrid({
     let size = { w: 0, h: 0 };
     let raf = 0;
     let visible = false;
+    let mix = 0; // 0 = theme colour, 1 = highlight colour
 
     const draw = (now: number) => {
       const { w: W, h: H } = size;
+      const lineActive = lerpRGBA(theme.lineActive, HIGHLIGHT, mix);
+      const nodeActive = lerpRGBA(
+        theme.nodeActive,
+        { ...HIGHLIGHT, a: 1 },
+        mix,
+      );
+      const glow = `${Math.round(nodeActive.r)},${Math.round(nodeActive.g)},${Math.round(nodeActive.b)}`;
       ctx.clearRect(0, 0, W, H);
       ctx.fillStyle = theme.bg;
       ctx.fillRect(0, 0, W, H);
@@ -213,7 +238,7 @@ export default function KineticGrid({
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
         ctx.lineTo(p2.x, p2.y);
-        ctx.strokeStyle = lerpColor(LINE_BASE, theme.lineActive, t);
+        ctx.strokeStyle = lerpColor(LINE_BASE, lineActive, t);
         ctx.lineWidth = lerpN(0.8, 1.5, t);
         ctx.stroke();
       };
@@ -252,8 +277,8 @@ export default function KineticGrid({
               p.y,
               glowR,
             );
-            grd.addColorStop(0, `rgba(${theme.glow},${(t * 0.3).toFixed(3)})`);
-            grd.addColorStop(1, `rgba(${theme.glow},0)`);
+            grd.addColorStop(0, `rgba(${glow},${(t * 0.3).toFixed(3)})`);
+            grd.addColorStop(1, `rgba(${glow},0)`);
             ctx.beginPath();
             ctx.arc(p.x, p.y, glowR, 0, Math.PI * 2);
             ctx.fillStyle = grd;
@@ -263,7 +288,7 @@ export default function KineticGrid({
           ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
           ctx.fillStyle = lerpColor(
             { r: 255, g: 255, b: 255, a: 0.16 },
-            theme.nodeActive,
+            nodeActive,
             t,
           );
           ctx.fill();
@@ -274,7 +299,7 @@ export default function KineticGrid({
       for (const r of ripples) {
         ctx.beginPath();
         ctx.arc(r.x, r.y, Math.max(0, r.radius), 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(${theme.ripple},${(r.opacity * 0.28).toFixed(3)})`;
+        ctx.strokeStyle = `rgba(${glow},${(r.opacity * 0.28).toFixed(3)})`;
         ctx.lineWidth = 1.5;
         ctx.stroke();
       }
@@ -285,6 +310,7 @@ export default function KineticGrid({
       if (!visible) return;
       mouse.x = lerpN(mouse.x, target.x, LERP_SPEED);
       mouse.y = lerpN(mouse.y, target.y, LERP_SPEED);
+      mix = lerpN(mix, highlightRef.current ? 1 : 0, HIGHLIGHT_EASE);
       draw(now);
     };
 

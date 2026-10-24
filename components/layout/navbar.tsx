@@ -1,24 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const LINKS = [
-  { id: "work", label: "Work" },
-  { id: "about", label: "About" },
-  { id: "contact", label: "Contact" },
-];
-
-function scrollToSection(id: string) {
-  const element = document.getElementById(id);
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-}
+import { HomeLink, SectionLink } from "@/components/layout/nav-links";
+import { SECTIONS } from "@/lib/sections";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -50,7 +38,7 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <Link href="/" aria-label="Sreeraj H home" className="shrink-0">
+        <HomeLink aria-label="Sreeraj H, back to top" className="shrink-0">
           <Image
             src="/logo.png"
             alt=""
@@ -59,30 +47,28 @@ export function Navbar() {
             priority
             className="h-9 w-9 transition-transform duration-300 hover:rotate-[-8deg]"
           />
-        </Link>
+        </HomeLink>
 
         <ul className="hidden items-center gap-10 md:flex">
-          {LINKS.map((l) => (
-            <li key={l.id}>
-              <button
-                type="button"
-                onClick={() => scrollToSection(l.id)}
-                className="relative text-[15px] font-medium text-text/85 transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:rounded-full after:bg-accent after:transition-transform after:duration-300 hover:text-text hover:after:scale-x-100"
+          {SECTIONS.map((s) => (
+            <li key={s.id}>
+              <SectionLink
+                id={s.id}
+                className="nav-link text-[15px] font-medium text-text/85 hover:text-text"
               >
-                {l.label}
-              </button>
+                {s.label}
+              </SectionLink>
             </li>
           ))}
         </ul>
 
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => scrollToSection("contact")}
-            className="hidden rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[#0A0A0A] transition-colors hover:bg-text md:inline-block"
+          <SectionLink
+            id="contact"
+            className="pulse-ring hidden rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[#0A0A0A] transition-colors hover:bg-text md:inline-block"
           >
             Let&apos;s talk
-          </button>
+          </SectionLink>
           <button
             type="button"
             onClick={() => setOpen(true)}
@@ -104,7 +90,18 @@ export function Navbar() {
             className="fixed inset-0 z-50 flex flex-col bg-bg md:hidden"
           >
             <div className="flex h-16 items-center justify-between px-6">
-              <Image src="/logo.png" alt="Sreeraj H" width={207} height={206} className="h-9 w-9" />
+              <HomeLink
+                aria-label="Sreeraj H, back to top"
+                onClick={() => setOpen(false)}
+              >
+                <Image
+                  src="/logo.png"
+                  alt=""
+                  width={207}
+                  height={206}
+                  className="h-9 w-9"
+                />
+              </HomeLink>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
@@ -115,9 +112,9 @@ export function Navbar() {
               </button>
             </div>
             <ul className="flex flex-1 flex-col items-start justify-center gap-6 px-8">
-              {LINKS.map((l, i) => (
+              {SECTIONS.map((s, i) => (
                 <motion.li
-                  key={l.id}
+                  key={s.id}
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
@@ -126,16 +123,13 @@ export function Navbar() {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setOpen(false);
-                      scrollToSection(l.id);
-                    }}
+                  <SectionLink
+                    id={s.id}
+                    onNavigate={() => setOpen(false)}
                     className="font-serif text-5xl tracking-tight text-text"
                   >
-                    {l.label}
-                  </button>
+                    {s.label}
+                  </SectionLink>
                 </motion.li>
               ))}
               <motion.li
@@ -143,20 +137,17 @@ export function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 0.6,
-                  delay: 0.1 + LINKS.length * 0.08,
+                  delay: 0.1 + SECTIONS.length * 0.08,
                 }}
                 className="mt-4"
               >
-                <button
-                  type="button"
-                  onClick={() => {
-                    setOpen(false);
-                    scrollToSection("contact");
-                  }}
-                  className="inline-block rounded-full border border-accent bg-accent px-5 py-2 text-sm text-[#0A0A0A]"
+                <SectionLink
+                  id="contact"
+                  onNavigate={() => setOpen(false)}
+                  className="pulse-ring inline-block rounded-full border border-accent bg-accent px-5 py-2 text-sm text-[#0A0A0A]"
                 >
                   Let&apos;s talk
-                </button>
+                </SectionLink>
               </motion.li>
             </ul>
           </motion.div>

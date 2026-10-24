@@ -40,6 +40,8 @@ export function Cursor() {
   const springX = useSpring(x, { damping: 30, stiffness: 400, mass: 0.4 });
   const springY = useSpring(y, { damping: 30, stiffness: 400, mass: 0.4 });
   const [hover, setHover] = useState(false);
+  // Regions with their own cursor (the contact form's name tag) hide the dot.
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     if (!enabled) return;
@@ -50,6 +52,7 @@ export function Cursor() {
       y.set(e.clientY);
       const t = e.target as HTMLElement | null;
       setHover(!!t?.closest(INTERACTIVE));
+      setHidden(!!t?.closest("[data-hide-cursor]"));
     }
 
     window.addEventListener("mousemove", onMove);
@@ -78,6 +81,7 @@ export function Cursor() {
           animate={{
             width: hover ? 48 : 12,
             height: hover ? 48 : 12,
+            opacity: hidden ? 0 : 1,
           }}
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           className="-translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
