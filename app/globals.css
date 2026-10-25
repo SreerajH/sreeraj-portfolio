@@ -210,46 +210,6 @@
   }
 }
 
-/* Loading screen (components/ui/loading-lines.tsx) */
-@keyframes ll-sweep {
-  0% {
-    transform: translate(-55%);
-  }
-  100% {
-    transform: translate(55%);
-  }
-}
-
-@keyframes ll-fade {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  65% {
-    opacity: 0;
-  }
-}
-
-@keyframes ll-letter {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-    text-shadow: 0 0 6px rgba(200, 255, 0, 0.8);
-    transform: scale(1.1) translateY(-2px);
-  }
-  20% {
-    opacity: 0.2;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 @keyframes beam-spin {
   to {
     --beam-angle: 360deg;
@@ -274,9 +234,5 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
-  }
-  /* The loader's letters only show mid-animation; without it, show them plain. */
-  .ll-letter {
-    opacity: 1 !important;
   }
 }
