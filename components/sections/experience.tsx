@@ -15,7 +15,7 @@ const STEPS: Step[] = [
     title: "Freelance UI/UX Designer & Developer",
     place: "Fiverr · LinkedIn",
     description:
-      "Shipping websites and mobile app designs for SaaS founders and early-stage startups.",
+      "Completed 40+ projects, designing and shipping websites and mobile apps for SaaS founders and early-stage startups.",
     colorTheme: "accent",
   },
   {

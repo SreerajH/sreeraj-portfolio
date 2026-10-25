@@ -44,6 +44,8 @@ export interface WorksWheelProps extends Omit<
   action?: string;
   /** Top-left corner, followed by the front item's number. Omit to drop it. */
   eyebrow?: string;
+  /** A small line under the eyebrow, e.g. how many pieces the index is drawn from. */
+  note?: string;
 }
 
 /* Geometry. The card is measured against the stage; everything else is measured
@@ -139,6 +141,7 @@ export function WorksWheel({
   label = "Works '26",
   action = "View",
   eyebrow,
+  note,
   className,
   style,
   ...props
@@ -346,7 +349,8 @@ export function WorksWheel({
                     }
                   }}
                   onFocus={(event) => {
-                    if (event.currentTarget.matches(":focus-visible")) toItem(i);
+                    if (event.currentTarget.matches(":focus-visible"))
+                      toItem(i);
                   }}
                   className="group absolute [backface-visibility:hidden]"
                   style={{
@@ -410,17 +414,25 @@ export function WorksWheel({
           >
             {current?.title}
           </div>
-          {current?.meta ? <p className="eyebrow mt-3">{current.meta}</p> : null}
+          {current?.meta ? (
+            <p className="eyebrow mt-3">{current.meta}</p>
+          ) : null}
         </div>
 
-        {eyebrow ? (
-          <p
-            className="eyebrow pointer-events-none absolute left-[2.5%]"
+        {eyebrow || note ? (
+          <div
+            className="pointer-events-none absolute left-[2.5%]"
             style={{ top: INSET_TOP }}
           >
-            {eyebrow} <span className="text-text-dim">·</span> {pad(active + 1)}{" "}
-            <span className="text-text-dim">/ {pad(count)}</span>
-          </p>
+            {eyebrow ? (
+              <p className="eyebrow">
+                {eyebrow} <span className="text-text-dim">·</span>{" "}
+                {pad(active + 1)}{" "}
+                <span className="text-text-dim">/ {pad(count)}</span>
+              </p>
+            ) : null}
+            {note ? <p className="mt-2 text-xs text-text-dim">{note}</p> : null}
+          </div>
         ) : null}
 
         <ol

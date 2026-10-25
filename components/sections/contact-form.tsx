@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type CSSProperties, type FormEvent } from "react";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -75,10 +75,25 @@ export function ContactForm({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "pulse-breathe rounded-3xl border border-border-hair bg-bg-elev/85 p-6 backdrop-blur-md md:p-8",
+        "relative rounded-3xl border border-border-hair bg-bg-elev/85 p-6 backdrop-blur-md md:p-8",
         className,
       )}
     >
+      {/* The moving border light: a soft blurred glow under a crisp line.
+          The blur sits on a wrapper so it applies after the ring's mask. */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-px rounded-[inherit] opacity-80 blur-md"
+      >
+        <span
+          className="beam-ring absolute inset-0 rounded-[inherit]"
+          style={{ "--beam-width": "3px" } as CSSProperties}
+        />
+      </span>
+      <span
+        aria-hidden="true"
+        className="beam-ring pointer-events-none absolute -inset-px rounded-[inherit]"
+      />
       {status === "sent" ? (
         <div
           className="flex min-h-[420px] flex-col items-start justify-center"

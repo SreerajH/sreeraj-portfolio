@@ -8,6 +8,8 @@ import { AnimatedText } from "@/components/ui/animated-underline-text";
 import { WorksWheel, type WorksWheelItem } from "@/components/ui/works-wheel";
 import { projects } from "@/lib/projects";
 
+const NOTE = `${projects.length} selected from 40+ completed projects`;
+
 const WHEEL_ITEMS: WorksWheelItem[] = projects.map((p) => ({
   title: p.name,
   image: p.thumbnail,
@@ -22,13 +24,19 @@ export function WorkGrid() {
       {/* Tablet and up: the scroll-driven wheel. On a phone its cards and type
           shrink past reading, so phones get the stacked cards below. */}
       <div className="hidden md:block">
-        <WorksWheel items={WHEEL_ITEMS} label="Selected Work" eyebrow="Work" />
+        <WorksWheel
+          items={WHEEL_ITEMS}
+          label="Selected Work"
+          eyebrow="Work"
+          note={NOTE}
+        />
       </div>
 
       <div className="mx-auto max-w-6xl px-6 py-24 md:hidden">
         <div className="mb-16">
-          <p className="eyebrow mb-4">Work · 2025</p>
+          <p className="eyebrow mb-4">Work</p>
           <AnimatedText text="Selected Work" as="h2" className="text-text" />
+          <p className="mt-5 text-xs text-text-dim">{NOTE}</p>
         </div>
 
         <div className="grid gap-6">

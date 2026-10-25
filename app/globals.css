@@ -167,9 +167,32 @@
   }
 }
 
-/* A slow breathing glow around a panel's edge. */
-@utility pulse-breathe {
-  animation: pulse-breathe 4.5s ease-in-out infinite;
+/* A lime arc that runs around a panel's border. The element is a ring:
+   a conic gradient masked down to its padding, so only the border band shows.
+   Set --beam-width to thicken it (the blurred glow copy uses a wider ring). */
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@utility beam-ring {
+  padding: var(--beam-width, 1.5px);
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0deg 230deg,
+    rgba(200, 255, 0, 0.2) 290deg,
+    #c8ff00 345deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  animation: beam-spin 4s linear infinite;
 }
 
 /* Gentle bob and tilt for decorative objects. */
@@ -187,17 +210,9 @@
   }
 }
 
-@keyframes pulse-breathe {
-  0%,
-  100% {
-    box-shadow:
-      0 0 0 1px rgba(200, 255, 0, 0.12),
-      0 0 40px -12px rgba(200, 255, 0, 0.08);
-  }
-  50% {
-    box-shadow:
-      0 0 0 1px rgba(200, 255, 0, 0.42),
-      0 0 70px -12px rgba(200, 255, 0, 0.24);
+@keyframes beam-spin {
+  to {
+    --beam-angle: 360deg;
   }
 }
 
