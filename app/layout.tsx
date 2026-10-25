@@ -6,6 +6,7 @@ import {
   Kaushan_Script,
 } from "next/font/google";
 import "./globals.css";
+import { SiteLoader } from "@/components/layout/site-loader";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -67,7 +68,16 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${instrumentSerif.variable} ${archivoBlack.variable} ${kaushanScript.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-bg text-text font-sans">{children}</body>
+      <body className="min-h-full bg-bg text-text font-sans">
+        {/* Without JavaScript nothing would ever dismiss the loader. */}
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: "<style>#site-loader{display:none}</style>",
+          }}
+        />
+        <SiteLoader />
+        {children}
+      </body>
     </html>
   );
 }

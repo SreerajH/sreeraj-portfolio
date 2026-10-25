@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Mail } from "lucide-react";
+import { ArrowUp, Mail } from "lucide-react";
 import {
   LinkedinIcon,
   FiverrIcon,
@@ -85,9 +85,13 @@ export function Footer() {
         </ul>
       </div>
       <div className="border-t border-border-hair">
-        <p className="mx-auto max-w-6xl px-6 py-4 text-[0.7rem] uppercase tracking-[0.15em] text-text-dim">
-          Designed &amp; built in Bengaluru. Last updated October 2026.
-        </p>
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4 text-[0.7rem] uppercase tracking-[0.15em] text-text-dim">
+          <p>Last updated October 2026</p>
+          <HomeLink className="nav-link inline-flex items-center gap-1.5 text-text-muted hover:text-text">
+            Back to top
+            <ArrowUp className="h-3 w-3" />
+          </HomeLink>
+        </div>
       </div>
     </footer>
   );
