@@ -78,6 +78,8 @@ export type MascotPortfolioHeroProps = {
   surface?: string
   /** Type, rules and the room. */
   ink?: string
+  /** A soft glow of colour behind the character. Omit for none. */
+  glow?: string
   className?: string
 }
 
@@ -220,6 +222,7 @@ const FLOWER = flowerPath()
 
 const CSS = `
 .mph-root{position:relative;width:100%;overflow:hidden;isolation:isolate;background:var(--mph-paper);color:var(--mph-ink);container:mph / size;font-family:var(--mph-sans);-webkit-font-smoothing:antialiased;}
+.mph-root::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 38% 62% at 77% 64%,color-mix(in srgb,var(--mph-glow) 42%,transparent),transparent 72%);}
 .mph-room{position:absolute;inset:0;width:100%;height:100%;display:block;color:var(--mph-ink);pointer-events:none;}
 .mph-room line,.mph-room path{vector-effect:non-scaling-stroke;}
 .mph-stage{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100cqw,177.78cqh);aspect-ratio:16/9;container:mphs / inline-size;}
@@ -296,6 +299,7 @@ const CSS = `
 @keyframes mph-wiggle{0%{transform:rotate(0);}25%{transform:rotate(-14deg);}55%{transform:rotate(9deg);}80%{transform:rotate(-4deg);}100%{transform:rotate(0);}}
 
 @container mph (orientation: portrait){
+.mph-root::before{background:radial-gradient(ellipse 70% 38% at 50% 86%,color-mix(in srgb,var(--mph-glow) 42%,transparent),transparent 72%);}
 .mph-stage{top:0;transform:translateX(-50%);width:min(100cqw,56.25cqh);height:100cqh;aspect-ratio:auto;}
 .mph-top{top:5cqw;left:6%;right:6%;grid-template-columns:auto 1fr auto;font-size:2.5cqw;}
 .mph-tagline,.mph-brace{display:none;}
@@ -362,6 +366,7 @@ export default function MascotPortfolioHero({
   paper = "#0A0A0A",
   surface = "#111111",
   ink = "#EDEDED",
+  glow,
   className,
 }: MascotPortfolioHeroProps) {
   // Gradient and filter ids are global. Two heroes on one page would otherwise
@@ -530,6 +535,7 @@ export default function MascotPortfolioHero({
     "--mph-paper": paper,
     "--mph-surface": surface,
     "--mph-ink": ink,
+    "--mph-glow": glow ?? "transparent",
     "--mph-sans": SANS_STACK,
     "--mph-display": DISPLAY_STACK,
     "--mph-h1-scale": headlineScale,

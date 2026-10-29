@@ -88,14 +88,15 @@ export function About() {
               animationDelay: `${-i * 1.7}s`,
             }}
           >
-            {/* The source art is blue/purple glass; rendered as chrome so lime
-                stays the only accent on the page. */}
+            {/* The source art is mixed blue/purple glass; flattened to grey and
+                retinted one cobalt (~#1558C9), the site's atmosphere colour.
+                Lime stays reserved for things you click. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={c.src}
               alt=""
               aria-hidden="true"
-              className="h-auto w-full brightness-110 contrast-110 grayscale"
+              className="h-auto w-full [filter:grayscale(1)_sepia(1)_hue-rotate(180deg)_saturate(3.2)_brightness(0.95)_contrast(1.1)]"
             />
           </div>
         </FadeIn>

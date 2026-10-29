@@ -21,6 +21,7 @@ export function Hero() {
         line3="Shipped."
         word=""
         headlineScale={1.15}
+        glow="#1558C9"
         seekingLabel="Open to*"
         seeking="New projects"
         href="#contact"
