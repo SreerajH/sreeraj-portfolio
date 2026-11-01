@@ -78,10 +78,15 @@ const Card = ({
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      className={`relative w-full transition-[scale] duration-300 hover:z-30 hover:scale-105 lg:w-[300px] ${rotate} ${className}`}
+      transition={{
+        duration: 0.7,
+        delay: index * 0.08,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className={`group relative w-full transition-[scale] duration-300 hover:z-30 hover:scale-105 lg:w-[300px] ${rotate} ${className}`}
     >
-      <div className="rounded-[25px] border border-border-hair bg-bg-elev p-2 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.9)]">
+      {/* Hovered, the card picks up a low cobalt light from behind. */}
+      <div className="rounded-[25px] border border-border-hair bg-bg-elev p-2 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.9)] transition-shadow duration-500 group-hover:shadow-[0_24px_48px_-24px_rgba(0,0,0,0.9),0_0_70px_-6px_rgba(21,88,201,0.6)]">
         <Pin className={`${theme.text} mx-auto mb-6 h-8 w-8`} />
         <div
           className={`${theme.bg} border ${theme.border} relative flex h-full flex-col overflow-hidden rounded-[15px] p-[18px]`}

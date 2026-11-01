@@ -1,4 +1,5 @@
 import HowItWorks, { type Step } from "@/components/ui/how-it-works";
+import { AnimatedText } from "@/components/ui/animated-underline-text";
 
 // Oldest first: the path reads as a route from the certificate to today.
 const STEPS: Step[] = [
@@ -43,7 +44,7 @@ export function Experience() {
     <section id="experience" className="relative py-24 md:py-32">
       <div className="mx-auto mb-12 max-w-6xl px-6 lg:mb-4">
         <p className="eyebrow mb-4">Path</p>
-        <h2 className="heading-2 text-text">Experience</h2>
+        <AnimatedText text="Experience" as="h2" className="text-text" />
       </div>
 
       <HowItWorks
