@@ -6,19 +6,24 @@ import { ArrowUpRight } from "lucide-react";
 
 type ColorTheme = "accent" | "mono";
 
-const THEMES: Record<ColorTheme, { bg: string; text: string; border: string }> =
-  {
-    accent: {
-      bg: "bg-accent/[0.06]",
-      text: "text-accent",
-      border: "border-accent/20",
-    },
-    mono: {
-      bg: "bg-white/[0.03]",
-      text: "text-text",
-      border: "border-border-hair",
-    },
-  };
+const THEMES: Record<
+  ColorTheme,
+  { bg: string; text: string; border: string; glow: string }
+> = {
+  accent: {
+    bg: "bg-accent/[0.06]",
+    text: "text-accent",
+    border: "border-accent/20",
+    // Hovered, each card glows in its own colour.
+    glow: "group-hover:shadow-[0_24px_48px_-24px_rgba(0,0,0,0.9),0_0_60px_-10px_rgba(200,255,0,0.28)]",
+  },
+  mono: {
+    bg: "bg-white/[0.03]",
+    text: "text-text",
+    border: "border-border-hair",
+    glow: "group-hover:shadow-[0_24px_48px_-24px_rgba(0,0,0,0.9),0_0_60px_-10px_rgba(237,237,237,0.16)]",
+  },
+};
 
 const Pin = ({ className }: { className?: string }) => (
   <svg
@@ -85,8 +90,9 @@ const Card = ({
       }}
       className={`group relative w-full transition-[scale] duration-300 hover:z-30 hover:scale-105 lg:w-[300px] ${rotate} ${className}`}
     >
-      {/* Hovered, the card picks up a low cobalt light from behind. */}
-      <div className="rounded-[25px] border border-border-hair bg-bg-elev p-2 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.9)] transition-shadow duration-500 group-hover:shadow-[0_24px_48px_-24px_rgba(0,0,0,0.9),0_0_70px_-6px_rgba(21,88,201,0.6)]">
+      <div
+        className={`rounded-[25px] border border-border-hair bg-bg-elev p-2 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.9)] transition-shadow duration-500 ${theme.glow}`}
+      >
         <Pin className={`${theme.text} mx-auto mb-6 h-8 w-8`} />
         <div
           className={`${theme.bg} border ${theme.border} relative flex h-full flex-col overflow-hidden rounded-[15px] p-[18px]`}
