@@ -1,29 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUp, Mail } from "lucide-react";
-import {
-  LinkedinIcon,
-  FiverrIcon,
-  BehanceIcon,
-} from "@/components/ui/brand-icons";
+import { ArrowUp, FileText, Mail } from "lucide-react";
+import { LinkedinIcon } from "@/components/ui/brand-icons";
 import { HomeLink, SectionLink } from "@/components/layout/nav-links";
 import { SECTIONS } from "@/lib/sections";
 
 const SOCIAL = [
   {
+    href: "/Sreeraj-H-Resume.pdf",
+    label: "Resume",
+    icon: FileText,
+  },
+  {
     href: "https://linkedin.com/in/sreerajh",
     label: "LinkedIn",
     icon: LinkedinIcon,
-  },
-  {
-    href: "https://fiverr.com/sreeraj_h",
-    label: "Fiverr",
-    icon: FiverrIcon,
-  },
-  {
-    href: "https://www.behance.net/sreerajh20",
-    label: "Behance",
-    icon: BehanceIcon,
   },
   {
     href: "mailto:hsreeraj4@gmail.com",

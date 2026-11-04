@@ -99,7 +99,7 @@ const Card = ({
         >
           <div className="mb-5 flex items-baseline justify-between gap-3">
             <span
-              className={`${theme.text} font-serif text-4xl italic leading-none`}
+              className={`${theme.text} font-condensed text-4xl leading-none`}
             >
               {number}
             </span>
@@ -109,7 +109,7 @@ const Card = ({
               </span>
             ) : null}
           </div>
-          <h3 className="font-serif text-2xl leading-tight tracking-tight text-text">
+          <h3 className="font-condensed text-2xl uppercase leading-[1.05] text-text">
             {title}
           </h3>
           {place ? (

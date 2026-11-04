@@ -17,6 +17,14 @@ export type MascotPortfolioHeroProps = {
   title?: string
   /** Multiplies the headline size, e.g. to fill the space when line four is dropped. */
   headlineScale?: number
+  /** Show the strip of labels along the top. Off leaves the poster clear. */
+  topRow?: boolean
+  /** One plain sentence under the headline. */
+  subheading?: string
+  /** The loop drawn under the last letter of line three. */
+  swash?: boolean
+  /** The two hairline brackets at the poster's left and right edges. */
+  rules?: boolean
 
   /* ---- top rule ---- */
   /** Set in the accent half of the index pill, top left. */
@@ -222,7 +230,7 @@ const FLOWER = flowerPath()
 
 const CSS = `
 .mph-root{position:relative;width:100%;overflow:hidden;isolation:isolate;background:var(--mph-paper);color:var(--mph-ink);container:mph / size;font-family:var(--mph-sans);-webkit-font-smoothing:antialiased;}
-.mph-root::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 38% 62% at 77% 64%,color-mix(in srgb,var(--mph-glow) 42%,transparent),transparent 72%);}
+.mph-root::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 38% 62% at 76% 64%,color-mix(in srgb,var(--mph-glow) 42%,transparent),transparent 72%);}
 .mph-room{position:absolute;inset:0;width:100%;height:100%;display:block;color:var(--mph-ink);pointer-events:none;}
 .mph-room line,.mph-room path{vector-effect:non-scaling-stroke;}
 .mph-stage{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100cqw,177.78cqh);aspect-ratio:16/9;container:mphs / inline-size;}
@@ -235,7 +243,7 @@ const CSS = `
 .mph-reel{grid-column:5;display:flex;align-items:center;gap:.8em;font-size:.85em;text-align:right;}
 .mph-reel i{display:block;width:1.9em;height:1.9em;border-radius:50%;background:var(--mph-accent);border:.12cqw solid var(--mph-ink);flex:none;}
 
-.mph-h1{position:absolute;left:8.8%;top:15.5%;margin:0;font-family:var(--mph-display);font-weight:400;font-size:calc(6.5cqw * var(--mph-h1-scale));line-height:1.04;letter-spacing:-.045em;text-transform:uppercase;color:var(--mph-ink);}
+.mph-h1{position:absolute;left:6.5%;top:28%;margin:0;font-family:var(--mph-display);font-weight:400;font-size:calc(6.5cqw * var(--mph-h1-scale));line-height:1.04;letter-spacing:-.045em;text-transform:uppercase;color:var(--mph-ink);}
 .mph-line{display:block;width:max-content;white-space:nowrap;position:relative;}
 .mph-ch{display:inline-block;transition:transform .35s cubic-bezier(.3,1.6,.5,1),color .2s;}
 .mph-ch:hover{transform:translateY(-.08em) rotate(-4deg);color:var(--mph-accent);}
@@ -272,10 +280,11 @@ const CSS = `
 .mph-flower svg{display:block;width:100%;height:100%;overflow:visible;transition:transform .5s cubic-bezier(.3,1.8,.5,1);}
 .mph-flower:hover svg{transform:scale(1.18) rotate(40deg);}
 .mph-flower path{fill:var(--mph-surface);stroke:var(--mph-ink);stroke-width:2.6;stroke-linejoin:round;}
-.mph-curl{position:absolute;left:35.5%;top:31%;width:5.6%;aspect-ratio:1;overflow:visible;pointer-events:none;}
+.mph-curl{position:absolute;left:33.2%;top:43.5%;width:5.6%;aspect-ratio:1;overflow:visible;pointer-events:none;}
 .mph-curl path{fill:none;stroke:var(--mph-ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;animation:mph-draw 1.4s 1s cubic-bezier(.6,0,.2,1) both;}
 
-.mph-services{position:absolute;left:4.6%;bottom:4.6%;display:flex;gap:3cqw;margin:0;padding:0;list-style:none;font-size:1.3cqw;font-weight:800;}
+.mph-sub{position:absolute;left:6.5%;top:72.5%;max-width:40%;margin:0;font-size:1.45cqw;font-weight:500;line-height:1.5;color:color-mix(in srgb,var(--mph-ink) 72%,transparent);}
+.mph-services{position:absolute;left:6.5%;bottom:4.6%;display:flex;gap:2.4cqw;margin:0;padding:0;list-style:none;font-size:1.2cqw;font-weight:800;}
 .mph-services li{position:relative;cursor:default;padding-bottom:.25em;}
 .mph-services li::after{content:"";position:absolute;left:0;right:0;bottom:0;height:.18em;background:var(--mph-accent);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.6,0,.2,1);}
 .mph-services li:hover::after{transform:scaleX(1);}
@@ -285,7 +294,7 @@ const CSS = `
 .mph-rule-l{left:3.7%;top:23%;height:13%;}
 .mph-rule-r{left:96.6%;top:66%;height:13%;}
 
-.mph-char{position:absolute;left:60.5%;bottom:-1.2%;width:40.5%;aspect-ratio:600/720;padding:0;margin:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;border-radius:40% 40% 8% 8%;}
+.mph-char{position:absolute;left:57.5%;bottom:-1.2%;width:39%;aspect-ratio:600/720;padding:0;margin:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;border-radius:40% 40% 8% 8%;}
 .mph-char:focus-visible{outline:.2cqw dashed var(--mph-ink);outline-offset:.4cqw;}
 .mph-char svg{display:block;width:100%;height:100%;overflow:visible;}
 .mph-tagwig{transform-box:fill-box;transform-origin:50% 0;}
@@ -304,12 +313,13 @@ const CSS = `
 .mph-top{top:5cqw;left:6%;right:6%;grid-template-columns:auto 1fr auto;font-size:2.5cqw;}
 .mph-tagline,.mph-brace{display:none;}
 .mph-reel{grid-column:3;}
-.mph-h1{left:7%;top:23cqw;font-size:calc(11.4cqw * var(--mph-h1-scale));}
+.mph-h1{left:7%;top:14cqw;font-size:calc(11.4cqw * var(--mph-h1-scale));}
 .mph-badge{left:auto;right:0;top:-2.4em;font-size:.22em;}
 .mph-pill{left:7%;top:72cqw;font-size:3.5cqw;}
 .mph-flower{left:auto;right:5%;top:67cqw;width:13%;}
-.mph-curl{left:54%;right:auto;top:38cqw;width:11%;}
-.mph-services{left:7%;right:7%;bottom:auto;top:87cqw;flex-wrap:wrap;gap:1.6cqw 5cqw;font-size:3cqw;}
+.mph-curl{left:54%;right:auto;top:29cqw;width:11%;}
+.mph-sub{left:7%;right:7%;top:60cqw;max-width:none;font-size:3.6cqw;}
+.mph-services{left:7%;right:7%;bottom:auto;top:82cqw;flex-wrap:wrap;gap:1.6cqw 5cqw;font-size:3cqw;}
 .mph-rule-l{left:3%;top:28cqw;height:12cqw;}
 .mph-rule-r{left:95%;top:auto;bottom:40cqw;height:12cqw;}
 .mph-char{left:12%;width:76%;bottom:-.6%;}
@@ -339,6 +349,10 @@ export default function MascotPortfolioHero({
   minHeight = "440px",
   title,
   headlineScale = 1,
+  topRow = true,
+  subheading,
+  swash = true,
+  rules = true,
   index = "08/01",
   discipline = "Visual design",
   tagline = "Make it helpful",
@@ -572,6 +586,7 @@ export default function MascotPortfolioHero({
       </svg>
 
       <div className="mph-stage">
+        {topRow ? (
         <header className="mph-top">
           <span className="mph-index">
             <b>{index}</b>
@@ -592,9 +607,14 @@ export default function MascotPortfolioHero({
             </span>
           </span>
         </header>
+        ) : null}
 
-        <span className="mph-rule mph-rule-l" aria-hidden="true" />
-        <span className="mph-rule mph-rule-r" aria-hidden="true" />
+        {rules ? (
+          <>
+            <span className="mph-rule mph-rule-l" aria-hidden="true" />
+            <span className="mph-rule mph-rule-r" aria-hidden="true" />
+          </>
+        ) : null}
 
         <h1 className="mph-h1" aria-label={title ?? [year, initials, line2, line3, word && word + bracketed].filter(Boolean).join(" ")}>
           <span className="mph-line" aria-hidden="true">
@@ -605,10 +625,12 @@ export default function MascotPortfolioHero({
               </svg>
             ) : null}
             {chars(initials)}
-            <span className="mph-badge">
-              {badge}
-              <sup>@</sup>
-            </span>
+            {badge ? (
+              <span className="mph-badge">
+                {badge}
+                <sup>@</sup>
+              </span>
+            ) : null}
           </span>
           <span className="mph-line" aria-hidden="true">
             {chars(line2)}
@@ -617,12 +639,14 @@ export default function MascotPortfolioHero({
             {chars(l3Head)}
             <span className="mph-swash">
               <span className="mph-ch">{l3Tail}</span>
-              <svg viewBox="0 0 255 72" preserveAspectRatio="none">
-                <path
-                  pathLength={1}
-                  d="M6 44 C40 18 150 4 222 14 C262 20 258 48 214 58 C150 72 60 70 30 60 C10 53 20 40 60 34"
-                />
-              </svg>
+              {swash ? (
+                <svg viewBox="0 0 255 72" preserveAspectRatio="none">
+                  <path
+                    pathLength={1}
+                    d="M6 44 C40 18 150 4 222 14 C262 20 258 48 214 58 C150 72 60 70 30 60 C10 53 20 40 60 34"
+                  />
+                </svg>
+              ) : null}
             </span>
             {chars(l3After)}
           </span>
@@ -645,6 +669,8 @@ export default function MascotPortfolioHero({
           ) : null}
         </h1>
 
+        {subheading ? <p className="mph-sub">{subheading}</p> : null}
+
         <svg className="mph-curl" viewBox="0 0 100 100" aria-hidden="true">
           <path
             pathLength={1}
@@ -652,6 +678,8 @@ export default function MascotPortfolioHero({
           />
         </svg>
 
+        {seeking ? (
+        <>
         <div className="mph-pill">
           <span className="mph-pill-a">{seekingLabel}</span>
           {href ? (
@@ -671,6 +699,8 @@ export default function MascotPortfolioHero({
             <circle cx="60" cy="60" r="4" fill="none" stroke={ink} strokeWidth="2" />
           </svg>
         </div>
+        </>
+        ) : null}
 
         <ul className="mph-services">
           {services.map((s) => (

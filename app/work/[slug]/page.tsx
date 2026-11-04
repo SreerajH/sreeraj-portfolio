@@ -150,7 +150,7 @@ export default async function CaseStudyPage(
                   />
                 </div>
                 <div>
-                  <h3 className="font-serif text-3xl tracking-tight text-text md:text-4xl">
+                  <h3 className="font-condensed text-3xl uppercase text-text md:text-4xl">
                     {d.title}
                   </h3>
                   <p className="mt-4 text-base leading-[1.65] text-text-muted">
@@ -175,7 +175,7 @@ export default async function CaseStudyPage(
                 key={m.label}
                 className="rounded-2xl border border-border-hair bg-bg-elev p-6"
               >
-                <p className="font-serif text-3xl tracking-tight text-accent md:text-4xl">
+                <p className="font-condensed text-3xl text-accent md:text-4xl">
                   {m.value}
                 </p>
                 <p className="mt-2 text-xs uppercase tracking-[0.15em] text-text-dim">
@@ -199,7 +199,7 @@ export default async function CaseStudyPage(
             >
               <div>
                 <p className="eyebrow mb-2 text-text-dim">Next project</p>
-                <h3 className="font-serif text-4xl tracking-tight text-text md:text-6xl">
+                <h3 className="font-condensed text-4xl uppercase text-text md:text-6xl">
                   {next.name}
                 </h3>
               </div>

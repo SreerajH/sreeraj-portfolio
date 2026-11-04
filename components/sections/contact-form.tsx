@@ -102,7 +102,7 @@ export function ContactForm({ className }: { className?: string }) {
           <span className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-[#0A0A0A]">
             <Check className="h-5 w-5" />
           </span>
-          <h3 className="font-serif text-3xl tracking-tight text-text">
+          <h3 className="font-condensed text-3xl uppercase text-text">
             Message sent.
           </h3>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-text-muted">
@@ -120,7 +120,7 @@ export function ContactForm({ className }: { className?: string }) {
       ) : (
         <form onSubmit={onSubmit} className="flex flex-col gap-5">
           <div>
-            <h3 className="font-serif text-3xl tracking-tight text-text">
+            <h3 className="font-condensed text-3xl uppercase text-text">
               Start a project
             </h3>
             <p className="mt-1 text-sm text-text-muted">

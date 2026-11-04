@@ -102,13 +102,13 @@ export function About() {
         </FadeIn>
       ))}
 
-      <div className="relative z-10 flex max-w-4xl flex-col items-center gap-16 sm:gap-20 md:gap-24">
+      <div className="relative z-10 flex max-w-4xl flex-col items-center gap-12 sm:gap-14 md:gap-16">
         <div className="flex flex-col items-center gap-10 sm:gap-14 md:gap-16">
           <FadeIn
             as="h2"
             y={40}
-            className="gradient-heading whitespace-nowrap text-center font-display uppercase leading-none tracking-tight"
-            style={{ fontSize: "clamp(3rem, 10vw, 128px)" }}
+            className="whitespace-nowrap text-center font-condensed uppercase leading-[0.9] text-text"
+            style={{ fontSize: "clamp(3.25rem, 8.5vw, 112px)" }}
           >
             About me
           </FadeIn>

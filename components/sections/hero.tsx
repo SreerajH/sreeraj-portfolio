@@ -2,29 +2,26 @@ import MascotPortfolioHero from "@/components/ui/mascot-portfolio-hero";
 
 export function Hero() {
   return (
-    // The navbar is fixed over the top 4rem; start the poster under it so the
-    // poster's own top rule doesn't collide with the nav links.
+    // The navbar is fixed over the top 4rem; start the poster under it.
     <section className="pt-16">
       <MascotPortfolioHero
         height="calc(100svh - 4rem)"
         title="Designed. Built. Shipped. Sreeraj H, UI/UX designer and developer"
-        index="Portfolio"
-        discipline="Sreeraj H"
-        tagline="UI/UX Designer & Developer"
-        collection={["Design", "Code"]}
-        reel={["Available for work", "Bengaluru, India"]}
+        // Kept deliberately bare: the headline, one sentence and the mascot.
+        topRow={false}
+        swash={false}
+        rules={false}
         // Three beats of the process, one per line.
         year="Designed."
         initials=""
-        badge="Hire me"
+        badge=""
         line2="Built."
         line3="Shipped."
         word=""
         headlineScale={1.15}
+        subheading="I'm Sreeraj, a UI/UX designer and developer taking websites and apps from first sketch to live launch."
         glow="#1558C9"
-        seekingLabel="Open to*"
-        seeking="New projects"
-        href="#contact"
+        seeking=""
         services={[
           "UI/UX Design",
           "Web Development",

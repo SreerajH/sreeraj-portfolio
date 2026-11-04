@@ -16,7 +16,7 @@ function Row() {
     <div className="flex shrink-0 items-center gap-8 pr-8">
       {WORDS.map((w) => (
         <span key={w} className="flex items-center gap-8">
-          <span className="font-serif text-4xl italic text-text md:text-5xl">
+          <span className="font-condensed text-4xl uppercase text-text md:text-5xl">
             {w}
           </span>
           <span className="text-2xl text-accent">◆</span>

@@ -1,5 +1,5 @@
 import HowItWorks, { type Step } from "@/components/ui/how-it-works";
-import { AnimatedText } from "@/components/ui/animated-underline-text";
+import { SectionHeading } from "@/components/ui/section-heading";
 
 // Oldest first: the path reads as a route from the certificate to today.
 const STEPS: Step[] = [
@@ -14,7 +14,7 @@ const STEPS: Step[] = [
   {
     date: "Jul - Nov 2025",
     title: "Freelance UI/UX Designer & Developer",
-    place: "Fiverr · LinkedIn",
+    place: "Independent · Remote",
     description:
       "Completed 40+ projects, designing and shipping websites and mobile apps for SaaS founders and early-stage startups.",
     colorTheme: "accent",
@@ -43,8 +43,12 @@ export function Experience() {
   return (
     <section id="experience" className="relative py-24 md:py-32">
       <div className="mx-auto mb-12 max-w-6xl px-6 lg:mb-4">
-        <p className="eyebrow mb-4">Path</p>
-        <AnimatedText text="Experience" as="h2" className="text-text" />
+        <SectionHeading
+          kicker="How I got here"
+          lead="The"
+          highlight="journey"
+          tail="so far"
+        />
       </div>
 
       <HowItWorks

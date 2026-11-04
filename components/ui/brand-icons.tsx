@@ -12,29 +12,3 @@ export function LinkedinIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-
-export function FiverrIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden
-      {...props}
-    >
-      <path d="M23.004 15.588h-2.538v8.412h-5.237v-8.412H6.916V24H1.68v-8.412H0v-4.175h1.68v-.97C1.68 5.77 4.554 3 9.4 3h2.02v4.173H9.784c-1.642 0-2.55.867-2.55 2.43v.81h7.995V7.997h5.237v2.416h2.538v4.175zm-2.82-10.002a2.615 2.615 0 1 1-5.228-.002 2.615 2.615 0 0 1 5.228.002z" />
-    </svg>
-  );
-}
-
-export function BehanceIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden
-      {...props}
-    >
-      <path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V4.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z" />
-    </svg>
-  );
-}

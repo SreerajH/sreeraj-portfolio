@@ -126,7 +126,7 @@ export function Navbar() {
                   <SectionLink
                     id={s.id}
                     onNavigate={() => setOpen(false)}
-                    className="font-serif text-5xl tracking-tight text-text"
+                    className="font-condensed text-5xl uppercase text-text"
                   >
                     {s.label}
                   </SectionLink>

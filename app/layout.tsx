@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import {
+  Anton,
   Archivo_Black,
   Inter,
-  Instrument_Serif,
   Kaushan_Script,
 } from "next/font/google";
 import "./globals.css";
@@ -14,17 +14,17 @@ const inter = Inter({
   display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
 // Display face for the hero poster headline only.
 const archivoBlack = Archivo_Black({
   variable: "--font-archivo-black",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+// Tall condensed grotesk for the section display headings.
+const anton = Anton({
+  variable: "--font-anton",
   subsets: ["latin"],
   weight: "400",
   display: "swap",
@@ -66,7 +66,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${instrumentSerif.variable} ${archivoBlack.variable} ${kaushanScript.variable} h-full antialiased`}
+      className={`${inter.variable} ${archivoBlack.variable} ${kaushanScript.variable} ${anton.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-bg text-text font-sans">
         {/* Without JavaScript nothing would ever dismiss the loader. */}

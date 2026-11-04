@@ -4,15 +4,18 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { GlowCard } from "@/components/ui/spotlight-card";
-import { AnimatedText } from "@/components/ui/animated-underline-text";
-import { WorksWheel, type WorksWheelItem } from "@/components/ui/works-wheel";
+import { SectionHeading } from "@/components/ui/section-heading";
+import TumbleDeckShowcase, {
+  type TumbleCard,
+} from "@/components/ui/tumble-deck-showcase";
 import { projects } from "@/lib/projects";
 
 const NOTE = `${projects.length} selected from 40+ completed projects`;
 
-const WHEEL_ITEMS: WorksWheelItem[] = projects.map((p) => ({
+const DECK_CARDS: TumbleCard[] = projects.map((p) => ({
   title: p.name,
-  image: p.thumbnail,
+  src: p.thumbnail,
+  alt: `${p.name} website`,
   href: p.liveUrl ?? p.caseStudyUrl,
   external: Boolean(p.liveUrl),
   meta: `${p.category} · ${p.year}`,
@@ -21,24 +24,18 @@ const WHEEL_ITEMS: WorksWheelItem[] = projects.map((p) => ({
 export function WorkGrid() {
   return (
     <section id="work" className="relative">
-      {/* Tablet and up: the scroll-driven wheel. On a phone its cards and type
-          shrink past reading, so phones get the stacked cards below. */}
-      <div className="hidden md:block">
-        <WorksWheel
-          items={WHEEL_ITEMS}
-          label="Selected Work"
-          eyebrow="Work"
-          note={NOTE}
-        />
+      <div className="mx-auto max-w-6xl px-6 pt-24 md:pt-32">
+        <SectionHeading kicker="Fresh off the canvas" lead="Selected" highlight="work" />
+        <p className="mt-6 text-sm text-text-dim">{NOTE}</p>
       </div>
 
-      <div className="mx-auto max-w-6xl px-6 py-24 md:hidden">
-        <div className="mb-16">
-          <p className="eyebrow mb-4">Work</p>
-          <AnimatedText text="Selected Work" as="h2" className="text-text" />
-          <p className="mt-5 text-xs text-text-dim">{NOTE}</p>
-        </div>
+      {/* Tablet and up: the scroll-driven deck. On a phone the cards get too
+          small to read, so phones get the stacked cards below. */}
+      <div className="hidden md:block">
+        <TumbleDeckShowcase cards={DECK_CARDS} eyebrow="Work" />
+      </div>
 
+      <div className="mx-auto max-w-6xl px-6 pb-24 pt-14 md:hidden">
         <div className="grid gap-6">
           {projects.map((p) => {
             const href = p.liveUrl ?? p.caseStudyUrl ?? "#";
@@ -56,6 +53,7 @@ export function WorkGrid() {
                   target={external ? "_blank" : undefined}
                   rel={external ? "noopener noreferrer" : undefined}
                   className="block"
+                  data-cursor="view"
                 >
                   <GlowCard
                     glowColor={p.glowColor}
@@ -82,7 +80,7 @@ export function WorkGrid() {
 
                       <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6">
                         <div>
-                          <h3 className="font-serif text-2xl tracking-tight text-white">
+                          <h3 className="font-condensed text-3xl uppercase leading-none text-white">
                             {p.name}
                           </h3>
                           <p className="mt-1 max-w-sm text-sm text-white/70">

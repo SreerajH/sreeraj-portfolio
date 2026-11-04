@@ -18,11 +18,13 @@
   /* Fonts */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, sans-serif;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  /* One display face across the site. */
+  --font-serif: var(--font-condensed);
   --font-heading: var(--font-serif);
   --font-display: var(--font-archivo-black), "Arial Black", ui-sans-serif,
     sans-serif;
   --font-script: var(--font-kaushan), "Brush Script MT", cursive;
+  --font-condensed: var(--font-anton), "Arial Narrow", Impact, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Shadcn token aliases (kept so shadcn components still work) */
@@ -102,33 +104,29 @@
 }
 
 @utility display-xl {
-  font-family: var(--font-serif);
+  font-family: var(--font-condensed);
+  text-transform: uppercase;
   font-size: clamp(4rem, 10vw, 9rem);
   line-height: 0.95;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 @utility heading-1 {
-  font-family: var(--font-serif);
+  font-family: var(--font-condensed);
+  text-transform: uppercase;
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 @utility heading-2 {
-  font-family: var(--font-serif);
+  font-family: var(--font-condensed);
+  text-transform: uppercase;
   font-size: clamp(2rem, 3.5vw, 3rem);
   line-height: 1.1;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
-/* Steel fade for big display headings: dim at the top, near-white at the base. */
-@utility gradient-heading {
-  background: linear-gradient(180deg, var(--text-dim) 0%, var(--text) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
 
 /* Header and footer links: a lime rule slides in under the word on hover. */
 @utility nav-link {
@@ -207,6 +205,20 @@
   70%,
   100% {
     box-shadow: 0 0 0 14px rgba(200, 255, 0, 0);
+  }
+}
+
+/* The glint on the loading bar: sweeps left to right on a loop. */
+@utility loader-glint {
+  animation: loader-glint 1.4s ease-in-out infinite;
+}
+
+@keyframes loader-glint {
+  from {
+    left: -25%;
+  }
+  to {
+    left: 100%;
   }
 }
 
