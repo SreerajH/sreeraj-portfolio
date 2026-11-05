@@ -56,7 +56,7 @@ export default async function CaseStudyPage(
             <ArrowLeft className="h-3 w-3" /> All work
           </Link>
 
-          <p className="eyebrow mt-10">{project.category} · {project.year}</p>
+          <p className="eyebrow mt-10">{project.platform} · {project.category} · {project.year}</p>
           <h1 className="heading-1 mt-4 text-text">{project.name}</h1>
           <p className="mt-6 max-w-2xl text-lg leading-[1.65] text-text-muted">
             {project.description}

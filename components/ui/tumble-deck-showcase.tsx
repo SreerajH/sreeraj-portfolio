@@ -29,6 +29,8 @@ export type TumbleCard = {
   /** Shown beside the deck while this card is at the front. */
   title: string;
   meta?: string;
+  /** A small pill after the meta line, e.g. "Concept". */
+  badge?: string;
   href?: string;
   /** Opens `href` in a new tab. */
   external?: boolean;
@@ -365,7 +367,16 @@ export default function TumbleDeckShowcase({
             <h3 className="font-condensed text-4xl uppercase leading-[0.95] text-text xl:text-5xl">
               {current.title}
             </h3>
-            {current.meta ? <p className="eyebrow mt-3">{current.meta}</p> : null}
+            {current.meta || current.badge ? (
+              <p className="eyebrow mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 lg:justify-start">
+                {current.meta}
+                {current.badge ? (
+                  <span className="rounded-full border border-white/20 bg-black/40 px-3 py-1 text-[0.65rem] uppercase tracking-[0.15em] text-white">
+                    {current.badge}
+                  </span>
+                ) : null}
+              </p>
+            ) : null}
             {current.href ? (
               <button
                 type="button"

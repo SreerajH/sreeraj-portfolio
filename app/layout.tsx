@@ -45,11 +45,11 @@ export const metadata: Metadata = {
     template: "%s | Sreeraj H",
   },
   description:
-    "Freelance UI/UX designer & developer based in Bengaluru, India. Crafting websites and mobile apps with motion, type, and detail.",
+    "UI/UX designer & developer based in Bengaluru, India. Designing and building websites and mobile apps with motion, type, and detail.",
   openGraph: {
     title: "Sreeraj H | UI/UX Designer & Developer",
     description:
-      "Freelance UI/UX designer & developer based in Bengaluru, India.",
+      "UI/UX designer & developer based in Bengaluru, India.",
     images: ["/og-image.png"],
     type: "website",
   },

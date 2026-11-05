@@ -13,10 +13,10 @@ const STEPS: Step[] = [
   },
   {
     date: "Jul - Nov 2025",
-    title: "Freelance UI/UX Designer & Developer",
+    title: "Independent Designer & Developer",
     place: "Independent · Remote",
     description:
-      "Completed 40+ projects, designing and shipping websites and mobile apps for SaaS founders and early-stage startups.",
+      "Designed and built concept websites and apps across healthcare, fitness, real estate and SaaS, taking each one from Figma to a live, responsive deployment.",
     colorTheme: "accent",
   },
   {

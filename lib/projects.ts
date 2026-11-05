@@ -1,9 +1,16 @@
-export type ProjectCategory = "WEB" | "MOBILE APP" | "CASE STUDY";
+/** What was built: shown as the WEB / MOBILE APP tag. */
+export type ProjectPlatform = "WEB" | "MOBILE APP" | "CASE STUDY";
+/**
+ * Who it was for. "Concept" is self-initiated work built to a realistic brief;
+ * switch a project to "Client" once it was made for a paying client.
+ */
+export type ProjectCategory = "Concept" | "Client" | "Personal";
 export type GlowColor = "lime" | "orange" | "green" | "purple" | "red" | "blue";
 
 export type Project = {
   slug: string;
   name: string;
+  platform: ProjectPlatform;
   category: ProjectCategory;
   description: string;
   thumbnail: string;
@@ -20,7 +27,8 @@ export const projects: Project[] = [
   {
     slug: "ironform",
     name: "Ironform Strength Club",
-    category: "WEB",
+    platform: "WEB",
+    category: "Concept",
     description:
       "Gym website for a Bengaluru strength club with programs, coaches, class schedule and plans.",
     thumbnail: "/projects/ironform.jpg",
@@ -32,7 +40,8 @@ export const projects: Project[] = [
   {
     slug: "lumina-dental",
     name: "Lumina Dental Studio",
-    category: "WEB",
+    platform: "WEB",
+    category: "Concept",
     description:
       "Dental clinic website with treatments, doctors, reviews and WhatsApp booking.",
     thumbnail: "/projects/lumina-dental.jpg",
@@ -44,7 +53,8 @@ export const projects: Project[] = [
   {
     slug: "luxe-estate",
     name: "Luxe Estate",
-    category: "WEB",
+    platform: "WEB",
+    category: "Concept",
     description:
       "Luxury real estate site with WebGL shaders and animated hero.",
     thumbnail: "/projects/luxe-estate.jpg",
@@ -56,7 +66,8 @@ export const projects: Project[] = [
   {
     slug: "appvault",
     name: "AppVault",
-    category: "WEB",
+    platform: "WEB",
+    category: "Concept",
     description:
       "Play Store-style app marketplace with auth, DB, and 11 API routes.",
     thumbnail: "/projects/appvault.jpg",
@@ -68,7 +79,8 @@ export const projects: Project[] = [
   {
     slug: "lumina",
     name: "Lumina",
-    category: "WEB",
+    platform: "WEB",
+    category: "Concept",
     description:
       "AI SaaS landing page for a writing, design, and automation tool.",
     thumbnail: "/projects/lumina.jpg",
@@ -80,7 +92,8 @@ export const projects: Project[] = [
   {
     slug: "brutus-studio",
     name: "Brutus Studio",
-    category: "WEB",
+    platform: "WEB",
+    category: "Concept",
     description:
       "Brutalist design studio concept with bold type and grid.",
     thumbnail: "/projects/brutus.jpg",
@@ -92,7 +105,8 @@ export const projects: Project[] = [
   {
     slug: "wayfare",
     name: "Wayfare",
-    category: "MOBILE APP",
+    platform: "MOBILE APP",
+    category: "Concept",
     description:
       "Travel planning app with booking flow, itineraries and tickets.",
     thumbnail: "/projects/wayfare.jpg",
@@ -107,7 +121,8 @@ export const projects: Project[] = [
   {
     slug: "healthyhub",
     name: "HealthHub",
-    category: "MOBILE APP",
+    platform: "MOBILE APP",
+    category: "Concept",
     description:
       "Family health records app for profiles, appointments and records.",
     thumbnail: "/projects/healthyhub.jpg",
