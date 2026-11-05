@@ -29,12 +29,11 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-8 px-6 py-12 md:grid-cols-3 md:gap-6">
         <div>
           <HomeLink
-            aria-label="Sreeraj H, back to top"
             className="inline-block"
           >
             <Image
               src="/logo.png"
-              alt=""
+              alt="Sreeraj H home"
               width={207}
               height={206}
               className="h-9 w-9 transition-transform duration-300 hover:rotate-[-8deg]"

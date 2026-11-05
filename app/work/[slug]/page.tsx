@@ -98,7 +98,7 @@ export default async function CaseStudyPage(
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={study.cover}
-              alt={`${project.name} cover`}
+              alt={study.coverAlt}
               className="block h-auto w-full"
               style={{ objectFit: "contain", background: "#111111" }}
             />
@@ -146,7 +146,7 @@ export default async function CaseStudyPage(
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={d.image}
-                    alt={d.title}
+                    alt={d.imageAlt}
                     loading="lazy"
                     className="block h-auto max-h-[620px] w-auto max-w-full"
                     style={{ objectFit: "contain", background: "#111111" }}

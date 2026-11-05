@@ -14,6 +14,8 @@ export type Project = {
   category: ProjectCategory;
   description: string;
   thumbnail: string;
+  /** Describes the thumbnail for screen readers and search. */
+  thumbnailAlt: string;
   /** Live demo deployment, or null for design-only case studies. */
   liveUrl: string | null;
   caseStudyUrl?: string;
@@ -33,6 +35,7 @@ export const projects: Project[] = [
     description:
       "Gym website for a Bengaluru strength club with programs, coaches, class schedule and plans.",
     thumbnail: "/projects/ironform.jpg",
+    thumbnailAlt: "Ironform Strength Club gym website homepage",
     // TODO: replace with subdomain of custom domain once set up
     liveUrl: "https://ironform-strength-club.vercel.app/",
     tech: ["Next.js", "Tailwind", "Framer Motion"],
@@ -47,6 +50,7 @@ export const projects: Project[] = [
     description:
       "Dental clinic website with treatments, doctors, reviews and WhatsApp booking.",
     thumbnail: "/projects/lumina-dental.jpg",
+    thumbnailAlt: "Lumina Dental Studio clinic website homepage",
     // TODO: replace with subdomain of custom domain once set up
     liveUrl: "https://lumina-dental-studio-drab.vercel.app/",
     tech: ["Next.js", "Tailwind", "Framer Motion"],
@@ -61,6 +65,7 @@ export const projects: Project[] = [
     description:
       "Luxury real estate site with WebGL shaders and animated hero.",
     thumbnail: "/projects/luxe-estate.jpg",
+    thumbnailAlt: "Luxe Estate luxury real estate website homepage",
     // TODO: replace with subdomain of custom domain once set up
     liveUrl: "https://lux-estate-one.vercel.app/",
     tech: ["Next.js", "Framer Motion", "WebGL", "Tailwind"],
@@ -75,6 +80,7 @@ export const projects: Project[] = [
     description:
       "Play Store-style app marketplace with auth, DB, and 11 API routes.",
     thumbnail: "/projects/appvault.jpg",
+    thumbnailAlt: "AppVault app marketplace homepage",
     // TODO: replace with subdomain of custom domain once set up
     liveUrl: "https://appvault-xi.vercel.app/",
     tech: ["Next.js 14", "Prisma", "NextAuth", "TypeScript"],
@@ -89,6 +95,7 @@ export const projects: Project[] = [
     description:
       "AI SaaS landing page for a writing, design, and automation tool.",
     thumbnail: "/projects/lumina.jpg",
+    thumbnailAlt: "Lumina AI writing studio landing page",
     // TODO: replace with subdomain of custom domain once set up
     liveUrl: "https://lumina-saas-ai.vercel.app/",
     tech: ["React", "Express", "Figma"],
@@ -103,6 +110,7 @@ export const projects: Project[] = [
     description:
       "Brutalist design studio concept with bold type and grid.",
     thumbnail: "/projects/brutus.jpg",
+    thumbnailAlt: "Brutus Studio design studio website homepage",
     // TODO: replace with subdomain of custom domain once set up
     liveUrl: "https://brutus-studio.vercel.app/",
     tech: ["Next.js", "Tailwind"],
@@ -117,6 +125,7 @@ export const projects: Project[] = [
     description:
       "Travel planning app with booking flow, itineraries and tickets.",
     thumbnail: "/projects/wayfare.jpg",
+    thumbnailAlt: "Wayfare travel app home and Tokyo destination screens on three phones",
     liveUrl: null,
     caseStudyUrl: "/work/wayfare",
     tech: ["Figma", "Instrument Sans"],
@@ -133,6 +142,7 @@ export const projects: Project[] = [
     description:
       "Family health records app for profiles, appointments and records.",
     thumbnail: "/projects/healthyhub.jpg",
+    thumbnailAlt: "HealthHub family health app home and profiles screens on three phones",
     liveUrl: null,
     caseStudyUrl: "/work/healthhub",
     tech: ["Figma", "UX Research"],

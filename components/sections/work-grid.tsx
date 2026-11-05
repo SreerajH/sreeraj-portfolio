@@ -18,7 +18,7 @@ const PILL =
 const DECK_CARDS: TumbleCard[] = projects.map((p) => ({
   title: p.name,
   src: p.thumbnail,
-  alt: `${p.name} website`,
+  alt: p.thumbnailAlt,
   href: p.liveUrl ?? p.caseStudyUrl,
   external: Boolean(p.liveUrl),
   meta: `${p.platform} · ${p.year}`,
@@ -68,7 +68,7 @@ export function WorkGrid() {
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={p.thumbnail}
-                        alt={p.name}
+                        alt={p.thumbnailAlt}
                         loading="lazy"
                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.08]"
                       />

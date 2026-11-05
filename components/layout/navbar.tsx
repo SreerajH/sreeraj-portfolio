@@ -38,10 +38,10 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <HomeLink aria-label="Sreeraj H, back to top" className="shrink-0">
+        <HomeLink className="shrink-0">
           <Image
             src="/logo.png"
-            alt=""
+            alt="Sreeraj H home"
             width={207}
             height={206}
             priority
@@ -91,12 +91,11 @@ export function Navbar() {
           >
             <div className="flex h-16 items-center justify-between px-6">
               <HomeLink
-                aria-label="Sreeraj H, back to top"
                 onClick={() => setOpen(false)}
               >
                 <Image
                   src="/logo.png"
-                  alt=""
+                  alt="Sreeraj H home"
                   width={207}
                   height={206}
                   className="h-9 w-9"

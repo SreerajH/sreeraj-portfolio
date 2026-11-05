@@ -85,14 +85,15 @@ function DockIcon({
       <motion.span
         style={{ scale, y: lift, width: SIZE, height: SIZE }}
         className="flex origin-bottom items-center justify-center rounded-full border border-border-hair bg-[#161616] shadow-[0_8px_20px_-8px_rgba(0,0,0,0.9)]"
-        aria-label={tool.name}
-        role="img"
+        // Image logos carry their own alt; drawn ones are labelled here.
+        aria-label={tool.img ? undefined : tool.name}
+        role={tool.img ? undefined : "img"}
       >
         {tool.img ? (
           // eslint-disable-next-line @next/next/no-img-element -- tiny static logo, no optimiser needed
           <img
             src={tool.img}
-            alt=""
+            alt={tool.name}
             width={24}
             height={24}
             loading="lazy"
