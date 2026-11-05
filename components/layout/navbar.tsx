@@ -63,6 +63,13 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
+          {/* Straight to resume, GitHub and LinkedIn, for recruiters. */}
+          <SectionLink
+            id="hire"
+            className="hidden rounded-full border border-white/20 px-4 py-2.5 text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent md:inline-block"
+          >
+            Hiring?
+          </SectionLink>
           <SectionLink
             id="contact"
             className="pulse-ring hidden rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[#0A0A0A] transition-colors hover:bg-text md:inline-block"
@@ -138,14 +145,21 @@ export function Navbar() {
                   duration: 0.6,
                   delay: 0.1 + SECTIONS.length * 0.08,
                 }}
-                className="mt-4"
+                className="mt-4 flex flex-wrap gap-3"
               >
                 <SectionLink
                   id="contact"
                   onNavigate={() => setOpen(false)}
-                  className="pulse-ring inline-block rounded-full border border-accent bg-accent px-5 py-2 text-sm text-[#0A0A0A]"
+                  className="pulse-ring inline-flex min-h-11 items-center rounded-full border border-accent bg-accent px-5 py-2 text-sm text-[#0A0A0A]"
                 >
                   Let&apos;s talk
+                </SectionLink>
+                <SectionLink
+                  id="hire"
+                  onNavigate={() => setOpen(false)}
+                  className="inline-flex min-h-11 items-center rounded-full border border-white/25 px-5 py-2 text-sm text-text"
+                >
+                  Hiring? Resume &amp; links
                 </SectionLink>
               </motion.li>
             </ul>

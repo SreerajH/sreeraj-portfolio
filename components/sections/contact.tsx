@@ -131,7 +131,9 @@ export function Contact() {
               left 60% and leads visually. */}
           <div className="mt-14 grid items-start gap-6 md:mt-16 lg:grid-cols-[3fr_2fr] lg:gap-8">
             <motion.div {...rise(0.1)} className="lg:order-2">
-              <HireCard />
+              <Pointer>
+                <HireCard />
+              </Pointer>
             </motion.div>
 
             <motion.div {...rise(0.15)} className="lg:order-1">

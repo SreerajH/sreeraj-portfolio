@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
 import MascotPortfolioHero from "@/components/ui/mascot-portfolio-hero";
 import { SectionLink } from "@/components/layout/nav-links";
 
@@ -45,6 +45,14 @@ export function Hero() {
               className="inline-flex min-h-11 items-center rounded-full border border-accent px-5 py-2.5 text-sm font-semibold text-accent transition-colors hover:bg-accent hover:text-[#0A0A0A]"
             >
               View work
+            </SectionLink>
+            {/* Recruiters skip straight to the resume, code and profile. */}
+            <SectionLink
+              id="hire"
+              className="inline-flex min-h-11 basis-full items-center gap-1.5 text-sm font-medium text-text-muted underline decoration-white/25 underline-offset-4 transition-colors hover:text-accent"
+            >
+              Hiring? Skip to my resume
+              <ArrowDown className="h-4 w-4" />
             </SectionLink>
           </>
         }

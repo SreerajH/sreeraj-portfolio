@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { SectionLink } from "@/components/layout/nav-links";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import TumbleDeckShowcase, {
@@ -31,6 +32,21 @@ export function WorkGrid() {
       <div className="mx-auto max-w-6xl px-6 pt-24 md:pt-32">
         <SectionHeading kicker="Fresh off the canvas" lead="Selected" highlight="work" />
         <p className="mt-6 text-sm text-text-dim">{NOTE}</p>
+      </div>
+
+      {/* A zero-height sticky rail: the skip button rides along the bottom of
+          the screen for the whole length of the section (the deck is a long
+          scroll), then leaves with it. */}
+      <div className="pointer-events-none sticky top-[calc(100svh-5rem)] z-30 h-0">
+        <div className="mx-auto flex max-w-6xl justify-end px-6">
+          <SectionLink
+            id="skills"
+            className="pointer-events-auto inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 bg-bg/80 px-5 py-2.5 text-sm font-semibold text-text shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] backdrop-blur-md transition-colors hover:border-accent hover:text-accent"
+          >
+            Skip projects
+            <ArrowDown className="h-4 w-4" />
+          </SectionLink>
+        </div>
       </div>
 
       {/* Tablet and up: the scroll-driven deck. On a phone the cards get too
