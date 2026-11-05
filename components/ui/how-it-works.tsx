@@ -49,6 +49,8 @@ export interface Step {
   href?: string;
   /** Shown opposite the number, e.g. the date range. */
   date?: string;
+  /** What came of it, shown under the description. Facts only, no metrics. */
+  outcome?: string;
   colorTheme?: ColorTheme;
 }
 
@@ -71,6 +73,7 @@ const Card = ({
   place,
   href,
   date,
+  outcome,
   colorTheme = "accent",
   index,
   className = "",
@@ -128,6 +131,14 @@ const Card = ({
             )
           ) : null}
           <p className="mt-3 text-sm/6 text-text-muted">{description}</p>
+          {outcome ? (
+            <p className="mt-4 border-t border-border-hair pt-3 text-sm/6 text-text-muted">
+              <span className="mr-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-accent">
+                Outcome
+              </span>
+              {outcome}
+            </p>
+          ) : null}
         </div>
       </div>
     </m.div>
@@ -160,6 +171,8 @@ export interface HowItWorksProps {
   stepPositions?: StepPosition[];
   /** Height of the pinned board on large screens, in px. Defaults by card count. */
   height?: number;
+  /** SVG path joining the cards, in a 1000-wide board; overrides the default. */
+  path?: string;
 }
 
 /**
@@ -171,6 +184,7 @@ export default function HowItWorks({
   className = "",
   stepPositions,
   height: heightProp,
+  path,
 }: HowItWorksProps) {
   const data = features;
   const positions = stepPositions || DEFAULT_CARD_POSITIONS;
@@ -188,7 +202,7 @@ export default function HowItWorks({
             : 1130);
 
   // One curve per gap, between the scattered card positions.
-  const pathD = data.reduce((acc, _, index) => {
+  const pathD = path ?? data.reduce((acc, _, index) => {
     if (index >= data.length - 1) return acc;
     if (index === 0) return "M 290 150 C 500 150, 550 270, 710 270";
     if (index === 1) return acc + " C 850 270, 500 350, 290 450";

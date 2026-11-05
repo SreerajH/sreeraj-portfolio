@@ -9,6 +9,8 @@ const STEPS: Step[] = [
     place: "Coursera · Completed",
     description:
       "Completed Google's UX Design Professional Certificate, covering research, wireframing, prototyping, and usability testing.",
+    outcome:
+      "Put the full research-to-prototype process into practice in the HealthHub case study.",
     colorTheme: "mono",
   },
   {
@@ -17,6 +19,8 @@ const STEPS: Step[] = [
     place: "Independent · Remote",
     description:
       "Designed and built concept websites and apps across healthcare, fitness, real estate and SaaS, taking each one from Figma to a live, responsive deployment.",
+    outcome:
+      "6 live websites and 2 app case studies shipped, all featured in this portfolio.",
     colorTheme: "accent",
   },
   {
@@ -26,6 +30,8 @@ const STEPS: Step[] = [
     href: "https://avado.in/",
     description:
       "Worked on product flows and visual design for an acoustic sound system website. First taste of shipping design decisions to real users.",
+    outcome:
+      "My product flows and visual design shipped on Avado's live website.",
     colorTheme: "mono",
   },
   {
@@ -35,6 +41,8 @@ const STEPS: Step[] = [
     href: "https://colourvibrations.in/",
     description:
       "Graphic design for Avado's parent company, specialists in acoustic materials and A/V integration for bespoke stage and theatre systems.",
+    outcome:
+      "Created the launch posters and AI video ads for the CV Elite-Quiet™ acoustic curtain and the colourvibrations.in website launch.",
     colorTheme: "accent",
   },
 ];
@@ -53,7 +61,9 @@ export function Experience() {
 
       <HowItWorks
         features={STEPS}
-        height={1000}
+        height={1100}
+        // Follows the card positions below: 01 → 02 → 03 → 04.
+        path="M 290 150 C 500 150, 550 270, 710 270 C 850 270, 500 390, 290 490 C 290 640, 550 800, 750 800"
         stepPositions={[
           { className: "lg:absolute lg:top-0 lg:left-[12%]", rotate: "lg:rotate-6" },
           {
@@ -61,11 +71,11 @@ export function Experience() {
             rotate: "lg:-rotate-6",
           },
           {
-            className: "lg:absolute lg:top-[480px] lg:left-[12%]",
+            className: "lg:absolute lg:top-[520px] lg:left-[12%]",
             rotate: "lg:rotate-6",
           },
           {
-            className: "lg:absolute lg:top-[610px] lg:right-[10%]",
+            className: "lg:absolute lg:top-[690px] lg:right-[10%]",
             rotate: "lg:-rotate-6",
           },
         ]}
