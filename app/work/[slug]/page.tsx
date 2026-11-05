@@ -31,6 +31,9 @@ export async function generateMetadata(
       description: project.description,
       url: path,
       type: "article",
+      // A page-level openGraph replaces the inherited one, so the image has
+      // to be named here; it resolves against metadataBase (SITE_URL).
+      images: [{ url: project.thumbnail, alt: project.thumbnailAlt }],
     },
   };
 }
