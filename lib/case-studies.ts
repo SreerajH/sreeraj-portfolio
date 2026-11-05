@@ -5,7 +5,8 @@ export type CaseStudy = {
   decisions: Array<{ title: string; body: string; image: string }>;
   gallery: Array<{ src: string; alt: string; caption?: string }>;
   outcome: {
-    metrics: Array<{ label: string; value: string }>;
+    /** caption: one line of context shown under the figure. */
+    metrics: Array<{ label: string; value: string; caption?: string }>;
     lessons: string;
   };
   cover: string;
@@ -74,8 +75,8 @@ export const caseStudies: Record<string, CaseStudy> = {
         "The itinerary is the product. Instrument Sans at display scale replaces most of what a chrome-heavy travel app would have used. The rest is whitespace and photography.",
     },
   },
-  healthyhub: {
-    slug: "healthyhub",
+  healthhub: {
+    slug: "healthhub",
     cover: HEALTH.loading,
     problem: [
       "Indian families share one phone, one set of health records, and zero source of truth. Reports live in WhatsApp, prescriptions in drawers, and appointments in memory.",
@@ -115,7 +116,13 @@ export const caseStudies: Record<string, CaseStudy> = {
     outcome: {
       metrics: [
         { label: "Screens designed", value: "42" },
-        { label: "Usability pass rate", value: "6/6" },
+        {
+          label: "Usability pass rate",
+          value: "6/6",
+          // TODO(Sreeraj): confirm tasks and test method
+          caption:
+            "6 of 6 participants completed the core tasks (add a family member, book an appointment, find a report) in usability testing.",
+        },
         { label: "Average onboarding", value: "52s" },
       ],
       lessons:

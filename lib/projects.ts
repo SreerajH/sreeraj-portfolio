@@ -126,7 +126,7 @@ export const projects: Project[] = [
     tools: ["Figma", "FigJam", "Notion"],
   },
   {
-    slug: "healthyhub",
+    slug: "healthhub",
     name: "HealthHub",
     platform: "MOBILE APP",
     category: "Concept",
@@ -134,7 +134,7 @@ export const projects: Project[] = [
       "Family health records app for profiles, appointments and records.",
     thumbnail: "/projects/healthyhub.jpg",
     liveUrl: null,
-    caseStudyUrl: "/work/healthyhub",
+    caseStudyUrl: "/work/healthhub",
     tech: ["Figma", "UX Research"],
     year: "2025",
     glowColor: "blue",

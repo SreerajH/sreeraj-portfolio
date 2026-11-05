@@ -184,6 +184,11 @@ export default async function CaseStudyPage(
                 <p className="mt-2 text-xs uppercase tracking-[0.15em] text-text-dim">
                   {m.label}
                 </p>
+                {m.caption ? (
+                  <p className="mt-3 text-xs leading-relaxed text-text-muted">
+                    {m.caption}
+                  </p>
+                ) : null}
               </div>
             ))}
           </div>
