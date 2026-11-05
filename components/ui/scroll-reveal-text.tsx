@@ -64,34 +64,42 @@ const STYLE_CLASS: Record<RevealStyle, string> = {
   rainbow: "",
 };
 
+/**
+ * The visible letters are drawn by CSS (`.glyph::before` reads
+ * `data-char`), not text nodes. The passage itself is in the DOM exactly
+ * once, as the screen-reader copy in ScrollRevealText, so crawlers and
+ * assistive tech read clean text instead of one span per letter.
+ */
+function glyph(text: string) {
+  return { "data-char": text } as const;
+}
+
 /** One unit of the reveal: dim at 0.2, fully lit once the scroll passes it. */
 function Lit({
   at,
   progress,
+  text,
   className,
   style,
-  children,
 }: {
   /** Position in the passage, 0 to 1. */
   at: number;
   progress: MotionValue<number>;
+  text: string;
   className?: string;
   style?: React.CSSProperties;
-  children: React.ReactNode;
 }) {
   const opacity = useTransform(
     progress,
     [Math.max(0, at - 0.1), Math.min(1, at + 0.05)],
     [0.2, 1],
   );
-  // The invisible copy holds the space; the lit one sits on top.
   return (
-    <span className={cn("relative inline-block", className)} style={style}>
-      <span className="invisible">{children}</span>
-      <motion.span className="absolute inset-0" style={{ opacity }}>
-        {children}
-      </motion.span>
-    </span>
+    <motion.span
+      {...glyph(text)}
+      className={cn("glyph inline-block", className)}
+      style={{ ...style, opacity }}
+    />
   );
 }
 
@@ -116,11 +124,9 @@ function RunView({
   if (run.style === "script") {
     const middle = (run.start + chars.length / 2) / total;
     return reduced ? (
-      <span className={cn("inline-block", className)}>{run.text}</span>
+      <span {...glyph(run.text)} className={cn("glyph inline-block", className)} />
     ) : (
-      <Lit at={middle} progress={progress} className={className}>
-        {run.text}
-      </Lit>
+      <Lit at={middle} progress={progress} text={run.text} className={className} />
     );
   }
 
@@ -128,9 +134,7 @@ function RunView({
     return (
       <span className={className}>
         {chars.map((c, i) => (
-          <span key={i} style={colour(i)}>
-            {c}
-          </span>
+          <span key={i} {...glyph(c)} className="glyph" style={colour(i)} />
         ))}
       </span>
     );
@@ -141,11 +145,10 @@ function RunView({
       key={i}
       at={(run.start + i) / total}
       progress={progress}
+      text={c}
       className={className}
       style={colour(i)}
-    >
-      {c}
-    </Lit>
+    />
   ));
 }
 
@@ -175,9 +178,11 @@ export function ScrollRevealText({
 
   return (
     <p ref={ref} className={className} style={style}>
+      {/* The one real copy of the text. */}
       <span className="sr-only">{segments.map((s) => s.text).join("")}</span>
-      {/* Each word is a no-wrap run and the spaces between words are real
-          spaces, so lines only ever break between words. */}
+      {/* The drawn copy: no text nodes, only data-char glyphs. Each word is a
+          no-wrap run and the gaps between words are real spaces, so lines
+          only ever break between words. */}
       <span aria-hidden="true">
         {tokens.map((token, i) =>
           token === " " ? (

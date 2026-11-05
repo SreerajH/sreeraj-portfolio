@@ -213,6 +213,12 @@
   animation: loader-glint 0.85s ease-in-out infinite;
 }
 
+/* Letters drawn from data-char, so split-text effects add no duplicate text
+   to the DOM (see ScrollRevealText). */
+.glyph::before {
+  content: attr(data-char);
+}
+
 /* First-visit loader: 0 to 100% over 850ms, then a 150ms fade, all from the
    first paint. The head script sets data-loader="skip" for repeat visits. */
 html[data-loader="skip"] #site-loader {

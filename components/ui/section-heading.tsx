@@ -43,7 +43,10 @@ export function SectionHeading({
         )}
         style={{ fontSize: "clamp(2.75rem, 7vw, 5.75rem)" }}
       >
+        {/* The {" "} gaps are real spaces for anyone reading the text; flex
+            layout ignores them, so the visual gap is still gap-x. */}
         {lead ? <span>{lead}</span> : null}
+        {lead ? " " : null}
         {/* Straight at rest; on hover it tips and swells on a spring, then settles back. */}
         <motion.span
           whileHover={{ rotate: -4, scale: 1.06 }}
@@ -52,6 +55,7 @@ export function SectionHeading({
         >
           {highlight}
         </motion.span>
+        {tail ? " " : null}
         {tail ? <span>{tail}</span> : null}
       </motion.h2>
     </div>
