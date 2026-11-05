@@ -6,6 +6,7 @@ import {
   Kaushan_Script,
 } from "next/font/google";
 import "./globals.css";
+import { SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/site";
 import { LOADER_HEAD_SCRIPT } from "@/components/layout/site-loader";
 
 const inter = Inter({
@@ -39,22 +40,29 @@ const kaushanScript = Kaushan_Script({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sreerajh.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Sreeraj H | UI/UX Designer & Developer",
+    default: SITE_TITLE,
     template: "%s | Sreeraj H",
   },
   description:
     "UI/UX designer & developer based in Bengaluru, India. Designing and building websites and mobile apps with motion, type, and detail.",
+  alternates: {
+    canonical: "/",
+  },
+  // og:image and twitter:image come from app/opengraph-image.tsx and
+  // app/twitter-image.tsx, resolved against metadataBase.
   openGraph: {
-    title: "Sreeraj H | UI/UX Designer & Developer",
+    title: SITE_TITLE,
     description:
       "UI/UX designer & developer based in Bengaluru, India.",
-    images: ["/og-image.png"],
+    url: "/",
+    siteName: SITE_NAME,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
+    title: SITE_TITLE,
   },
 };
 

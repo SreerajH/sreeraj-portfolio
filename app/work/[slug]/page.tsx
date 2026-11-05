@@ -21,13 +21,16 @@ export async function generateMetadata(
   const { slug } = await props.params;
   const project = getProject(slug);
   if (!project) return {};
+  const path = `/work/${project.slug}`;
   return {
     title: `${project.name} Case Study`,
     description: project.description,
+    alternates: { canonical: path },
     openGraph: {
       title: `${project.name} Case Study`,
       description: project.description,
-      images: [project.thumbnail],
+      url: path,
+      type: "article",
     },
   };
 }

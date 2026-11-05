@@ -14,6 +14,7 @@ export type Project = {
   category: ProjectCategory;
   description: string;
   thumbnail: string;
+  /** Live demo deployment, or null for design-only case studies. */
   liveUrl: string | null;
   caseStudyUrl?: string;
   tech: string[];
@@ -32,6 +33,7 @@ export const projects: Project[] = [
     description:
       "Gym website for a Bengaluru strength club with programs, coaches, class schedule and plans.",
     thumbnail: "/projects/ironform.jpg",
+    // TODO: replace with subdomain of custom domain once set up
     liveUrl: "https://ironform-strength-club.vercel.app/",
     tech: ["Next.js", "Tailwind", "Framer Motion"],
     year: "2026",
@@ -45,6 +47,7 @@ export const projects: Project[] = [
     description:
       "Dental clinic website with treatments, doctors, reviews and WhatsApp booking.",
     thumbnail: "/projects/lumina-dental.jpg",
+    // TODO: replace with subdomain of custom domain once set up
     liveUrl: "https://lumina-dental-studio-drab.vercel.app/",
     tech: ["Next.js", "Tailwind", "Framer Motion"],
     year: "2026",
@@ -58,6 +61,7 @@ export const projects: Project[] = [
     description:
       "Luxury real estate site with WebGL shaders and animated hero.",
     thumbnail: "/projects/luxe-estate.jpg",
+    // TODO: replace with subdomain of custom domain once set up
     liveUrl: "https://lux-estate-one.vercel.app/",
     tech: ["Next.js", "Framer Motion", "WebGL", "Tailwind"],
     year: "2025",
@@ -71,6 +75,7 @@ export const projects: Project[] = [
     description:
       "Play Store-style app marketplace with auth, DB, and 11 API routes.",
     thumbnail: "/projects/appvault.jpg",
+    // TODO: replace with subdomain of custom domain once set up
     liveUrl: "https://appvault-xi.vercel.app/",
     tech: ["Next.js 14", "Prisma", "NextAuth", "TypeScript"],
     year: "2025",
@@ -84,6 +89,7 @@ export const projects: Project[] = [
     description:
       "AI SaaS landing page for a writing, design, and automation tool.",
     thumbnail: "/projects/lumina.jpg",
+    // TODO: replace with subdomain of custom domain once set up
     liveUrl: "https://lumina-saas-ai.vercel.app/",
     tech: ["React", "Express", "Figma"],
     year: "2025",
@@ -97,6 +103,7 @@ export const projects: Project[] = [
     description:
       "Brutalist design studio concept with bold type and grid.",
     thumbnail: "/projects/brutus.jpg",
+    // TODO: replace with subdomain of custom domain once set up
     liveUrl: "https://brutus-studio.vercel.app/",
     tech: ["Next.js", "Tailwind"],
     year: "2025",
