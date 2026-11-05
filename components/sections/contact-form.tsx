@@ -23,7 +23,14 @@ const FIELD =
 const LABEL =
   "mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-text-muted";
 
-export function ContactForm({ className }: { className?: string }) {
+export function ContactForm({
+  id,
+  className,
+}: {
+  /** Anchor for deep links, e.g. /#start-project. */
+  id?: string;
+  className?: string;
+}) {
   const [status, setStatus] = useState<Status>("idle");
   const [type, setType] = useState(PROJECT_TYPES[0]);
 
@@ -74,6 +81,7 @@ export function ContactForm({ className }: { className?: string }) {
 
   return (
     <div
+      id={id}
       className={cn(
         "relative rounded-3xl border border-border-hair bg-bg-elev/85 p-6 backdrop-blur-md md:p-8",
         className,
@@ -120,8 +128,9 @@ export function ContactForm({ className }: { className?: string }) {
       ) : (
         <form onSubmit={onSubmit} className="flex flex-col gap-5">
           <div>
-            <h3 className="font-condensed text-3xl uppercase text-text">
-              Start a project
+            <p className="eyebrow">For clients</p>
+            <h3 className="mt-3 font-condensed text-3xl uppercase text-text">
+              Have a project?
             </h3>
             <p className="mt-1 text-sm text-text-muted">
               A few details and I&apos;ll take it from there.
@@ -234,6 +243,16 @@ export function ContactForm({ className }: { className?: string }) {
               </p>
             ) : null}
           </div>
+
+          <p className="text-sm text-text-muted">
+            Prefer email?{" "}
+            <a
+              href={`mailto:${EMAIL}`}
+              className="inline-flex min-h-11 items-center text-accent underline-offset-4 hover:underline"
+            >
+              {EMAIL}
+            </a>
+          </p>
         </form>
       )}
     </div>

@@ -1,33 +1,94 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ComponentType, type SVGProps } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, FileText } from "lucide-react";
 import KineticGrid from "@/components/ui/kinetic-grid";
 import { ContactForm } from "@/components/sections/contact-form";
 import { Pointer } from "@/components/ui/custom-cursor";
-const EMAIL = "hsreeraj4@gmail.com";
+import { GithubIcon, LinkedinIcon } from "@/components/ui/brand-icons";
 
-// The three ways to reach me, set as big cards along the foot of the section.
-const CHANNELS = [
+type HireLink = {
+  label: string;
+  hint: string;
+  href: string;
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
+  /** Saves the file under this name. */
+  download?: string;
+};
+
+// Everything a recruiter needs, one tap each.
+const HIRE_LINKS: HireLink[] = [
   {
-    title: "Resume",
-    caption: "Download the PDF",
+    label: "Resume",
+    hint: "Download PDF",
     href: "/Sreeraj-H-Resume.pdf",
+    icon: FileText,
     download: "Sreeraj H Resume.pdf",
   },
   {
-    title: "LinkedIn",
-    caption: "Say hi, connect",
-    href: "https://linkedin.com/in/sreerajh",
-    external: true,
+    label: "GitHub",
+    hint: "See the code",
+    href: "https://github.com/SreerajH",
+    icon: GithubIcon,
   },
   {
-    title: "Mail",
-    caption: "Write to me directly",
-    href: `mailto:${EMAIL}`,
+    label: "LinkedIn",
+    hint: "Connect with me",
+    href: "https://linkedin.com/in/sreerajh",
+    icon: LinkedinIcon,
   },
 ];
+
+const rise = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.2 },
+  transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] as const },
+});
+
+/** The short card for recruiters: resume, code, profile. */
+function HireCard() {
+  return (
+    <div
+      id="hire"
+      className="scroll-mt-24 rounded-3xl border border-border-hair bg-bg-elev/85 p-6 backdrop-blur-md md:p-8"
+    >
+      <p className="eyebrow">For recruiters</p>
+      <h3 className="mt-3 font-condensed text-3xl uppercase text-text">Hiring?</h3>
+      <p className="mt-1 text-sm text-text-muted">
+        Open to UI/UX design and frontend developer roles. Based in Bengaluru.
+      </p>
+
+      <ul className="mt-6 flex flex-col gap-3">
+        {HIRE_LINKS.map(({ label, hint, href, icon: Icon, download }) => (
+          <li key={label}>
+            <a
+              href={href}
+              download={download}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex min-h-14 items-center gap-4 rounded-2xl border border-border-hair bg-bg/60 px-4 py-3 transition-colors hover:border-accent"
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 text-text transition-colors group-hover:text-accent">
+                <Icon className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block font-condensed text-2xl uppercase leading-none text-text transition-colors group-hover:text-accent">
+                  {label}
+                </span>
+                <span className="mt-1 block text-xs text-text-muted">{hint}</span>
+              </span>
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/25 text-text transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-[#0A0A0A]">
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export function Contact() {
   // The grid behind turns white while the pointer is on the accent word.
@@ -36,83 +97,50 @@ export function Contact() {
   return (
     <section id="contact" className="relative">
       <KineticGrid className="py-28 md:py-36" highlight={onWord}>
-        <div className="mx-auto grid max-w-6xl items-center gap-14 px-6 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
-          <div className="text-left">
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.6 }}
-              className="eyebrow mb-6"
-            >
-              Ready to build?
-            </motion.p>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-[14ch] font-condensed uppercase leading-[1.08] tracking-[0.01em] text-text"
-              style={{ fontSize: "clamp(3.25rem, 6.2vw, 6.75rem)" }}
-            >
-              Let&apos;s make something{" "}
-              <span
-                className="text-accent"
-                onPointerEnter={() => setOnWord(true)}
-                onPointerLeave={() => setOnWord(false)}
-              >
-                unignorable.
-              </span>
-            </motion.h2>
-
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
+        <div className="mx-auto max-w-6xl px-6">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 0.8,
-              delay: 0.15,
-              ease: [0.22, 1, 0.36, 1],
-            }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6 }}
+            className="eyebrow mb-6"
           >
-            <Pointer>
-              <ContactForm />
-            </Pointer>
-          </motion.div>
-        </div>
+            Ready to build?
+          </motion.p>
 
-        <motion.ul
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto mt-24 grid max-w-6xl gap-12 px-6 md:grid-cols-3 md:gap-8"
-        >
-          {CHANNELS.map((c) => (
-            <li key={c.title}>
-              <a
-                href={c.href}
-                download={c.download}
-                target={c.external ? "_blank" : undefined}
-                rel={c.external ? "noopener noreferrer" : undefined}
-                className="group block border-t border-white/20 pt-6 transition-colors hover:border-accent"
-              >
-                <span className="flex items-start justify-between gap-4">
-                  <span className="font-condensed text-5xl uppercase leading-none text-text transition-colors group-hover:text-accent lg:text-6xl">
-                    {c.title}
-                  </span>
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/25 text-text transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-[#0A0A0A]">
-                    <ArrowUpRight className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  </span>
-                </span>
-                <span className="mt-4 block text-sm text-text-muted">{c.caption}</span>
-              </a>
-            </li>
-          ))}
-        </motion.ul>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-[14ch] font-condensed uppercase leading-[1.08] tracking-[0.01em] text-text"
+            style={{ fontSize: "clamp(3.25rem, 6.2vw, 6.75rem)" }}
+          >
+            Let&apos;s make something{" "}
+            <span
+              className="text-accent"
+              onPointerEnter={() => setOnWord(true)}
+              onPointerLeave={() => setOnWord(false)}
+            >
+              unignorable.
+            </span>
+          </motion.h2>
+
+          {/* Recruiters first in the DOM: on phones and tablets their short
+              card comes before the long form. From lg the form takes the
+              left 60% and leads visually. */}
+          <div className="mt-14 grid items-start gap-6 md:mt-16 lg:grid-cols-[3fr_2fr] lg:gap-8">
+            <motion.div {...rise(0.1)} className="lg:order-2">
+              <HireCard />
+            </motion.div>
+
+            <motion.div {...rise(0.15)} className="lg:order-1">
+              <Pointer>
+                <ContactForm id="start-project" className="scroll-mt-24" />
+              </Pointer>
+            </motion.div>
+          </div>
+        </div>
       </KineticGrid>
     </section>
   );
