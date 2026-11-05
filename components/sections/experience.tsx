@@ -31,7 +31,7 @@ const STEPS: Step[] = [
     description:
       "Worked on product flows and visual design for an acoustic sound system website. First taste of shipping design decisions to real users.",
     outcome:
-      "My product flows and visual design shipped on Avado's live website.",
+      "Delivered product flows and visual designs for the company website.",
     colorTheme: "mono",
   },
   {

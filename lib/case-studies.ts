@@ -128,9 +128,7 @@ export const caseStudies: Record<string, CaseStudy> = {
         {
           label: "Usability pass rate",
           value: "6/6",
-          // TODO(Sreeraj): confirm tasks and test method
-          caption:
-            "6 of 6 participants completed the core tasks (add a family member, book an appointment, find a report) in usability testing.",
+          caption: "From an early usability round with 6 participants.",
         },
         { label: "Average onboarding", value: "52s" },
       ],
