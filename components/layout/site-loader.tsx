@@ -30,21 +30,33 @@ export function SiteLoader() {
     const html = document.documentElement;
     // Already hidden by CSS (display: none), so there is nothing to time.
     if (html.dataset.loader === "skip") return;
-    // performance.now() counts from navigation start, so this lands on the
-    // 1s mark however late hydration was.
-    const timer = window.setTimeout(
-      () => {
-        try {
-          localStorage.setItem(LOADER_SEEN_KEY, "1");
-        } catch {
-          /* storage blocked: the head script will skip it next time anyway */
-        }
-        html.setAttribute("data-loader", "skip");
-        setGone(true);
-      },
-      Math.max(0, TOTAL_MS - performance.now()),
-    );
-    return () => window.clearTimeout(timer);
+    let cancelled = false;
+    const finish = () => {
+      if (cancelled) return;
+      try {
+        localStorage.setItem(LOADER_SEEN_KEY, "1");
+      } catch {
+        /* storage blocked: the head script will skip it next time anyway */
+      }
+      html.setAttribute("data-loader", "skip");
+      setGone(true);
+    };
+
+    // The CSS fade is the clock (it started at first paint), so wait for it
+    // to finish rather than timing it again here. If hydration came late it
+    // has already finished and this resolves at once.
+    const fade = document
+      .getElementById("site-loader")
+      ?.getAnimations?.()
+      .find((a) => (a as CSSAnimation).animationName === "loader-out");
+    let timer = 0;
+    if (fade) fade.finished.then(finish, finish);
+    else timer = window.setTimeout(finish, Math.max(0, TOTAL_MS - performance.now()));
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
   }, []);
 
   if (gone) return null;
