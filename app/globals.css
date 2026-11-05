@@ -210,7 +210,56 @@
 
 /* The glint on the loading bar: sweeps left to right on a loop. */
 @utility loader-glint {
-  animation: loader-glint 1.4s ease-in-out infinite;
+  animation: loader-glint 0.85s ease-in-out infinite;
+}
+
+/* First-visit loader: 0 to 100% over 850ms, then a 150ms fade, all from the
+   first paint. The head script sets data-loader="skip" for repeat visits. */
+html[data-loader="skip"] #site-loader {
+  display: none;
+}
+
+#site-loader {
+  animation: loader-out 150ms ease-out 850ms forwards;
+}
+
+#site-loader .loader-bar {
+  transform: scaleX(0);
+  animation: loader-fill 850ms cubic-bezier(0.3, 0.7, 0.4, 1) forwards;
+}
+
+@property --loader-pct {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+#site-loader .loader-count {
+  counter-reset: loader-pct var(--loader-pct);
+  animation: loader-count 850ms cubic-bezier(0.3, 0.7, 0.4, 1) forwards;
+}
+
+#site-loader .loader-count::before {
+  content: counter(loader-pct);
+}
+
+@keyframes loader-fill {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes loader-count {
+  to {
+    --loader-pct: 100;
+  }
+}
+
+@keyframes loader-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 @keyframes loader-glint {

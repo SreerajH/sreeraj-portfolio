@@ -6,7 +6,7 @@ import {
   Kaushan_Script,
 } from "next/font/google";
 import "./globals.css";
-import { SiteLoader } from "@/components/layout/site-loader";
+import { LOADER_HEAD_SCRIPT } from "@/components/layout/site-loader";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -66,16 +66,21 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      // The head script below may add data-loader before React hydrates.
+      suppressHydrationWarning
       className={`${inter.variable} ${archivoBlack.variable} ${kaushanScript.variable} ${anton.variable} h-full antialiased`}
     >
+      <head>
+        {/* Before first paint: decides whether the homepage loader shows. */}
+        <script dangerouslySetInnerHTML={{ __html: LOADER_HEAD_SCRIPT }} />
+      </head>
       <body className="min-h-full bg-bg text-text font-sans">
-        {/* Without JavaScript nothing would ever dismiss the loader. */}
+        {/* Without JavaScript the loader is skipped altogether. */}
         <noscript
           dangerouslySetInnerHTML={{
             __html: "<style>#site-loader{display:none}</style>",
           }}
         />
-        <SiteLoader />
         {children}
       </body>
     </html>
