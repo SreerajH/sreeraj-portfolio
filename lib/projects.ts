@@ -43,32 +43,32 @@ export const projects: Project[] = [
     glowColor: "orange",
   },
   {
-    slug: "lumina-dental",
-    name: "Lumina Dental Studio",
+    slug: "nacre-dental",
+    name: "Nacre Dental Studio",
     platform: "WEB",
     category: "Concept",
     description:
       "Dental clinic website with treatments, doctors, reviews and WhatsApp booking.",
-    thumbnail: "/projects/lumina-dental.jpg",
-    thumbnailAlt: "Lumina Dental Studio clinic website homepage",
+    thumbnail: "/projects/nacre-dental.jpg",
+    thumbnailAlt: "Nacre Dental Studio clinic website homepage with a treatment room photo",
     // TODO: replace with subdomain of custom domain once set up
-    liveUrl: "https://lumina-dental-studio-drab.vercel.app/",
+    liveUrl: "https://nacre-dental-studio.vercel.app/",
     tech: ["Next.js", "Tailwind", "Framer Motion"],
     year: "2026",
     glowColor: "blue",
   },
   {
-    slug: "luxe-estate",
-    name: "Luxe Estate",
+    slug: "velmont",
+    name: "Velmont Private Estates",
     platform: "WEB",
     category: "Concept",
     description:
-      "Luxury real estate site with WebGL shaders and animated hero.",
-    thumbnail: "/projects/luxe-estate.jpg",
-    thumbnailAlt: "Luxe Estate luxury real estate website homepage",
+      "Luxury real estate site for private residences, with a cinematic hero and private viewing enquiries.",
+    thumbnail: "/projects/velmont.jpg",
+    thumbnailAlt: "Velmont Private Estates homepage with a snow-covered alpine house",
     // TODO: replace with subdomain of custom domain once set up
-    liveUrl: "https://lux-estate-one.vercel.app/",
-    tech: ["Next.js", "Framer Motion", "WebGL", "Tailwind"],
+    liveUrl: "https://velmont-private-estates.vercel.app/",
+    tech: ["Next.js", "Framer Motion", "Tailwind"],
     year: "2025",
     glowColor: "orange",
   },
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     description:
       "Play Store-style app marketplace with auth, DB, and 11 API routes.",
     thumbnail: "/projects/appvault.jpg",
-    thumbnailAlt: "AppVault app marketplace homepage",
+    thumbnailAlt: "AppVault app marketplace Today page with the app of the day",
     // TODO: replace with subdomain of custom domain once set up
     liveUrl: "https://appvault-xi.vercel.app/",
     tech: ["Next.js 14", "Prisma", "NextAuth", "TypeScript"],
@@ -95,7 +95,7 @@ export const projects: Project[] = [
     description:
       "AI SaaS landing page for a writing, design, and automation tool.",
     thumbnail: "/projects/lumina.jpg",
-    thumbnailAlt: "Lumina AI writing studio landing page",
+    thumbnailAlt: "Lumina AI writing studio landing page with a large VOICE headline",
     // TODO: replace with subdomain of custom domain once set up
     liveUrl: "https://lumina-saas-ai.vercel.app/",
     tech: ["React", "Express", "Figma"],
