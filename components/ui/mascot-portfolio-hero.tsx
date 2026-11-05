@@ -65,6 +65,11 @@ export type MascotPortfolioHeroProps = {
   href?: string
   /** The row along the bottom edge. */
   services?: string[]
+  /**
+   * Buttons under the services row, shown below 1024px only (on large
+   * screens the navbar already carries the call to action).
+   */
+  actions?: React.ReactNode
 
   /* ---- the character ---- */
   /** Cycled through, one per click on the character. */
@@ -326,6 +331,36 @@ const CSS = `
 .mph-bubble{font-size:3cqw;right:2%;top:2%;max-width:52%;}
 }
 
+/* Below 1024px only: services become plain labels with the buttons under
+   them, and the character shrinks so both buttons sit above the fold. */
+.mph-foot{display:contents;}
+.mph-cta{display:none;}
+@media (max-width:1023.98px){
+.mph-foot{position:absolute;display:flex;flex-direction:column;align-items:flex-start;gap:16px;z-index:2;}
+.mph-foot .mph-services{position:static;font-weight:600;color:color-mix(in srgb,var(--mph-ink) 72%,transparent);}
+.mph-services li{cursor:auto;}
+.mph-services li::after{display:none;}
+.mph-cta{display:flex;flex-wrap:wrap;gap:12px;}
+}
+@container mph (orientation: landscape){
+@media (max-width:1023.98px){
+.mph-h1{top:16%;}
+.mph-curl{top:31.5%;}
+.mph-sub{top:60%;}
+.mph-foot{left:6.5%;right:6.5%;bottom:4.6%;}
+.mph-char{left:69.2%;width:27.3%;}
+}
+}
+@container mph (orientation: portrait){
+@media (max-width:1023.98px){
+.mph-foot{left:7%;right:7%;top:82cqw;}
+.mph-char{left:27.2%;width:45.6%;}
+}
+@media (min-width:768px) and (max-width:1023.98px){
+.mph-char{left:23.4%;width:53.2%;}
+}
+}
+
 @media (prefers-reduced-motion: reduce){
 .mph-root *,.mph-root *::after{animation:none!important;transition:none!important;}
 }
@@ -370,6 +405,7 @@ export default function MascotPortfolioHero({
   seeking = "UI / Graphic",
   href,
   services = DEFAULT_SERVICES,
+  actions,
   greetings = DEFAULT_GREETINGS,
   skin = "#f7cfb0",
   beanie = "#C8FF00",
@@ -632,9 +668,10 @@ export default function MascotPortfolioHero({
               </span>
             ) : null}
           </span>
+          {" "}
           <span className="mph-line" aria-hidden="true">
             {chars(line2)}
-          </span>
+          </span>{" "}
           <span className="mph-line" aria-hidden="true">
             {chars(l3Head)}
             <span className="mph-swash">
@@ -702,11 +739,17 @@ export default function MascotPortfolioHero({
         </>
         ) : null}
 
-        <ul className="mph-services">
-          {services.map((s) => (
-            <li key={s}>{s}</li>
-          ))}
-        </ul>
+        {/* display: contents on large screens, so the services row keeps
+            its own absolute position there; below 1024px it stacks the row
+            and the buttons in one flow. */}
+        <div className="mph-foot">
+          <ul className="mph-services">
+            {services.map((s) => (
+              <li key={s}>{s}</li>
+            ))}
+          </ul>
+          {actions ? <div className="mph-cta">{actions}</div> : null}
+        </div>
 
         <button
           ref={charRef}
