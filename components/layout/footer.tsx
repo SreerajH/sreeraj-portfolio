@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUp, FileText, Mail } from "lucide-react";
-import { LinkedinIcon } from "@/components/ui/brand-icons";
+import { GithubIcon, LinkedinIcon } from "@/components/ui/brand-icons";
 import { HomeLink, SectionLink } from "@/components/layout/nav-links";
 import { SECTIONS } from "@/lib/sections";
 
@@ -15,6 +15,11 @@ const SOCIAL = [
     href: "https://linkedin.com/in/sreerajh",
     label: "LinkedIn",
     icon: LinkedinIcon,
+  },
+  {
+    href: "https://github.com/SreerajH",
+    label: "GitHub",
+    icon: GithubIcon,
   },
   {
     href: "mailto:hsreeraj4@gmail.com",
