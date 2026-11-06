@@ -43,19 +43,19 @@ export const projects: Project[] = [
     glowColor: "orange",
   },
   {
-    slug: "nacre-dental",
-    name: "Nacre Dental Studio",
+    slug: "lumina",
+    name: "Lumina",
     platform: "WEB",
     category: "Concept",
     description:
-      "Dental clinic website with treatments, doctors, reviews and WhatsApp booking.",
-    thumbnail: "/projects/nacre-dental.jpg",
-    thumbnailAlt: "Nacre Dental Studio clinic website homepage with a treatment room photo",
+      "AI SaaS landing page for a writing, design, and automation tool.",
+    thumbnail: "/projects/lumina.jpg",
+    thumbnailAlt: "Lumina AI writing studio landing page with a large VOICE headline",
     // TODO: replace with subdomain of custom domain once set up
-    liveUrl: "https://nacre-dental-studio.vercel.app/",
-    tech: ["Next.js", "Tailwind", "Framer Motion"],
-    year: "2026",
-    glowColor: "blue",
+    liveUrl: "https://lumina-saas-ai.vercel.app/",
+    tech: ["React", "Express", "Figma"],
+    year: "2025",
+    glowColor: "purple",
   },
   {
     slug: "velmont",
@@ -73,6 +73,21 @@ export const projects: Project[] = [
     glowColor: "orange",
   },
   {
+    slug: "nacre-dental",
+    name: "Nacre Dental Studio",
+    platform: "WEB",
+    category: "Concept",
+    description:
+      "Dental clinic website with treatments, doctors, reviews and WhatsApp booking.",
+    thumbnail: "/projects/nacre-dental.jpg",
+    thumbnailAlt: "Nacre Dental Studio clinic website homepage with a treatment room photo",
+    // TODO: replace with subdomain of custom domain once set up
+    liveUrl: "https://nacre-dental-studio.vercel.app/",
+    tech: ["Next.js", "Tailwind", "Framer Motion"],
+    year: "2026",
+    glowColor: "blue",
+  },
+  {
     slug: "appvault",
     name: "AppVault",
     platform: "WEB",
@@ -86,21 +101,6 @@ export const projects: Project[] = [
     tech: ["Next.js 14", "Prisma", "NextAuth", "TypeScript"],
     year: "2025",
     glowColor: "green",
-  },
-  {
-    slug: "lumina",
-    name: "Lumina",
-    platform: "WEB",
-    category: "Concept",
-    description:
-      "AI SaaS landing page for a writing, design, and automation tool.",
-    thumbnail: "/projects/lumina.jpg",
-    thumbnailAlt: "Lumina AI writing studio landing page with a large VOICE headline",
-    // TODO: replace with subdomain of custom domain once set up
-    liveUrl: "https://lumina-saas-ai.vercel.app/",
-    tech: ["React", "Express", "Figma"],
-    year: "2025",
-    glowColor: "purple",
   },
   {
     slug: "brutus-studio",
