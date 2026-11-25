@@ -5,6 +5,7 @@ import { SiteLoader } from "@/components/layout/site-loader";
 import { Hero } from "@/components/sections/hero";
 import { Marquee } from "@/components/sections/marquee";
 import { About } from "@/components/sections/about";
+import { CaseStudies } from "@/components/sections/case-studies";
 import { WorkGrid } from "@/components/sections/work-grid";
 import { Skills } from "@/components/sections/skills";
 import { Experience } from "@/components/sections/experience";
@@ -22,6 +23,7 @@ export default function Home() {
         <Hero />
         <Marquee />
         <About />
+        <CaseStudies />
         <WorkGrid />
         <Skills />
         <Experience />

@@ -153,12 +153,26 @@ export const projects: Project[] = [
   },
 ];
 
+/** Design-and-build write-ups (no live site to visit), shown in their own Case studies section. */
+export const isCaseStudy = (p: Project) => Boolean(p.caseStudyUrl) && !p.liveUrl;
+
+const CASE_STUDY_ORDER = ["healthhub", "wayfare"];
+export const caseStudyProjects = projects
+  .filter(isCaseStudy)
+  .sort((a, b) => CASE_STUDY_ORDER.indexOf(a.slug) - CASE_STUDY_ORDER.indexOf(b.slug));
+
+/** Everything else: live builds in the Work deck. */
+export const workProjects = projects.filter((p) => !isCaseStudy(p));
+
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug) ?? null;
 }
 
+/** The next project in the same group, so a case study leads on to the other case study. */
 export function getNextProject(slug: string) {
-  const idx = projects.findIndex((p) => p.slug === slug);
-  if (idx < 0) return null;
-  return projects[(idx + 1) % projects.length];
+  const project = getProject(slug);
+  if (!project) return null;
+  const group = isCaseStudy(project) ? caseStudyProjects : workProjects;
+  const idx = group.findIndex((p) => p.slug === slug);
+  return group[(idx + 1) % group.length];
 }
