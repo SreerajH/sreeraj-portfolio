@@ -63,18 +63,18 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
-          {/* Straight to resume, GitHub and LinkedIn, for recruiters. */}
-          <SectionLink
-            id="hire"
-            className="hidden rounded-full border border-white/20 px-4 py-2.5 text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent md:inline-block"
-          >
-            Hiring?
-          </SectionLink>
           <SectionLink
             id="contact"
-            className="pulse-ring hidden rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[#0A0A0A] transition-colors hover:bg-text md:inline-block"
+            className="hidden rounded-full border border-white/20 px-4 py-2.5 text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent md:inline-block"
           >
             Let&apos;s talk
+          </SectionLink>
+          {/* The primary action: resume, GitHub and LinkedIn, for recruiters. */}
+          <SectionLink
+            id="hire"
+            className="pulse-ring hidden rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[#0A0A0A] transition-colors hover:bg-text md:inline-block"
+          >
+            Hiring?
           </SectionLink>
           <button
             type="button"

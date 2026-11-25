@@ -21,6 +21,10 @@ export type MascotPortfolioHeroProps = {
   topRow?: boolean
   /** One plain sentence under the headline. */
   subheading?: string
+  /** A short line above the headline: role, place, availability. */
+  eyebrow?: React.ReactNode
+  /** Evidence under the buttons, e.g. a link to the latest case study. */
+  proof?: React.ReactNode
   /** The loop drawn under the last letter of line three. */
   swash?: boolean
   /** The two hairline brackets at the poster's left and right edges. */
@@ -65,10 +69,7 @@ export type MascotPortfolioHeroProps = {
   href?: string
   /** The row along the bottom edge. */
   services?: string[]
-  /**
-   * Buttons under the services row, shown below 1024px only (on large
-   * screens the navbar already carries the call to action).
-   */
+  /** Buttons under the subheading (and the services row, if any). */
   actions?: React.ReactNode
 
   /* ---- the character ---- */
@@ -248,7 +249,7 @@ const CSS = `
 .mph-reel{grid-column:5;display:flex;align-items:center;gap:.8em;font-size:.85em;text-align:right;}
 .mph-reel i{display:block;width:1.9em;height:1.9em;border-radius:50%;background:var(--mph-accent);border:.12cqw solid var(--mph-ink);flex:none;}
 
-.mph-h1{position:absolute;left:6.5%;top:20%;margin:0;font-family:var(--mph-display);font-weight:400;font-size:calc(6.5cqw * var(--mph-h1-scale));line-height:1.04;letter-spacing:-.045em;text-transform:uppercase;color:var(--mph-ink);}
+.mph-h1{position:absolute;left:6.5%;top:19%;margin:0;font-family:var(--mph-display);font-weight:400;font-size:calc(6.5cqw * var(--mph-h1-scale));line-height:1.04;letter-spacing:-.045em;text-transform:uppercase;color:var(--mph-ink);}
 .mph-line{display:block;width:max-content;white-space:nowrap;position:relative;}
 .mph-ch{display:inline-block;transition:transform .35s cubic-bezier(.3,1.6,.5,1),color .2s;}
 .mph-ch:hover{transform:translateY(-.08em) rotate(-4deg);color:var(--mph-accent);}
@@ -285,10 +286,10 @@ const CSS = `
 .mph-flower svg{display:block;width:100%;height:100%;overflow:visible;transition:transform .5s cubic-bezier(.3,1.8,.5,1);}
 .mph-flower:hover svg{transform:scale(1.18) rotate(40deg);}
 .mph-flower path{fill:var(--mph-surface);stroke:var(--mph-ink);stroke-width:2.6;stroke-linejoin:round;}
-.mph-curl{position:absolute;left:33.2%;top:35.5%;width:5.6%;aspect-ratio:1;overflow:visible;pointer-events:none;}
+.mph-curl{position:absolute;left:29.6%;top:32%;width:5.6%;aspect-ratio:1;overflow:visible;pointer-events:none;}
 .mph-curl path{fill:none;stroke:var(--mph-ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;animation:mph-draw 1.4s 1s cubic-bezier(.6,0,.2,1) both;}
 
-.mph-sub{position:absolute;left:6.5%;top:64.5%;max-width:40%;margin:0;font-size:1.45cqw;font-weight:500;line-height:1.5;color:color-mix(in srgb,var(--mph-ink) 72%,transparent);}
+.mph-sub{position:absolute;left:6.5%;top:58%;max-width:44%;margin:0;font-size:1.45cqw;font-weight:500;line-height:1.5;color:color-mix(in srgb,var(--mph-ink) 72%,transparent);}
 .mph-services{position:absolute;left:6.5%;bottom:12.6%;display:flex;gap:2.4cqw;margin:0;padding:0;list-style:none;font-size:1.2cqw;font-weight:800;}
 .mph-services li{position:relative;cursor:default;padding-bottom:.25em;}
 .mph-services li::after{content:"";position:absolute;left:0;right:0;bottom:0;height:.18em;background:var(--mph-accent);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.6,0,.2,1);}
@@ -299,7 +300,7 @@ const CSS = `
 .mph-rule-l{left:3.7%;top:23%;height:13%;}
 .mph-rule-r{left:96.6%;top:66%;height:13%;}
 
-.mph-char{position:absolute;left:55.4%;bottom:-1.2%;width:43.2%;aspect-ratio:600/720;padding:0;margin:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;border-radius:40% 40% 8% 8%;}
+.mph-char{position:absolute;left:59.5%;bottom:-1.2%;width:36%;aspect-ratio:600/720;padding:0;margin:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;border-radius:40% 40% 8% 8%;}
 .mph-char:focus-visible{outline:.2cqw dashed var(--mph-ink);outline-offset:.4cqw;}
 .mph-char svg{display:block;width:100%;height:100%;overflow:visible;}
 .mph-tagwig{transform-box:fill-box;transform-origin:50% 0;}
@@ -318,12 +319,12 @@ const CSS = `
 .mph-top{top:5cqw;left:6%;right:6%;grid-template-columns:auto 1fr auto;font-size:2.5cqw;}
 .mph-tagline,.mph-brace{display:none;}
 .mph-reel{grid-column:3;}
-.mph-h1{left:7%;top:14cqw;font-size:calc(11.4cqw * var(--mph-h1-scale));}
+.mph-h1{left:7%;top:17cqw;font-size:calc(11.4cqw * var(--mph-h1-scale));}
 .mph-badge{left:auto;right:0;top:-2.4em;font-size:.22em;}
 .mph-pill{left:7%;top:72cqw;font-size:3.5cqw;}
 .mph-flower{left:auto;right:5%;top:67cqw;width:13%;}
-.mph-curl{left:54%;right:auto;top:29cqw;width:11%;}
-.mph-sub{left:7%;right:7%;top:60cqw;max-width:none;font-size:3.6cqw;}
+.mph-curl{left:48%;right:auto;top:30cqw;width:11%;}
+.mph-sub{left:7%;right:7%;top:57cqw;max-width:none;font-size:3.6cqw;}
 .mph-services{left:7%;right:7%;bottom:auto;top:82cqw;flex-wrap:wrap;gap:1.6cqw 5cqw;font-size:3cqw;}
 .mph-rule-l{left:3%;top:28cqw;height:12cqw;}
 .mph-rule-r{left:95%;top:auto;bottom:40cqw;height:12cqw;}
@@ -331,34 +332,48 @@ const CSS = `
 .mph-bubble{font-size:3cqw;right:2%;top:2%;max-width:52%;}
 }
 
-/* Below 1024px only: services become plain labels with the buttons under
-   them, and the character shrinks so both buttons sit above the fold. */
-.mph-foot{display:contents;}
-.mph-cta{display:none;}
+/* The eyebrow, and one stacked flow under the subheading: services (if any),
+   the buttons, then the proof. Set in px so the buttons keep their tap size. */
+.mph-eyebrow{position:absolute;left:6.5%;right:30%;top:10.5%;display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;z-index:2;}
+.mph-foot{position:absolute;left:6.5%;top:73%;display:flex;flex-direction:column;align-items:flex-start;gap:16px;z-index:2;}
+.mph-foot .mph-services{position:static;}
+.mph-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;}
+.mph-proof{width:100%;max-width:440px;}
 @media (max-width:1023.98px){
-.mph-foot{position:absolute;display:flex;flex-direction:column;align-items:flex-start;gap:16px;z-index:2;}
-.mph-foot .mph-services{position:static;font-weight:600;color:color-mix(in srgb,var(--mph-ink) 72%,transparent);}
+.mph-foot .mph-services{font-weight:600;color:color-mix(in srgb,var(--mph-ink) 72%,transparent);}
 .mph-services li{cursor:auto;}
 .mph-services li::after{display:none;}
-.mph-cta{display:flex;flex-wrap:wrap;gap:12px;}
 }
 @container mph (orientation: landscape){
 @media (max-width:1023.98px){
 .mph-h1{top:16%;}
-.mph-curl{top:31.5%;}
-.mph-sub{top:60%;}
-.mph-foot{left:6.5%;right:6.5%;bottom:4.6%;}
+.mph-curl{top:29%;}
+.mph-sub{top:55%;}
+.mph-eyebrow{top:5%;right:6.5%;}
+.mph-foot{left:6.5%;right:6.5%;top:auto;bottom:4.6%;}
 .mph-char{left:69.2%;width:27.3%;}
 }
 }
 @container mph (orientation: portrait){
 @media (max-width:1023.98px){
-.mph-foot{left:7%;right:7%;top:82cqw;}
+/* The eyebrow is set in px, so everything under it starts a fixed 64px
+   below it rather than at a width-based offset. */
+.mph-eyebrow{left:7%;right:7%;top:3cqw;}
+.mph-h1{top:calc(3cqw + 64px);}
+.mph-curl{top:calc(16cqw + 64px);}
+.mph-sub{top:calc(43cqw + 64px);}
+.mph-foot{left:7%;right:7%;top:calc(70cqw + 64px);gap:12px;}
 .mph-char{left:27.2%;width:45.6%;}
 }
 @media (min-width:768px) and (max-width:1023.98px){
 .mph-char{left:23.4%;width:53.2%;}
 }
+}
+
+/* Phones: a taller poster, so the character sits under the buttons and the
+   proof card instead of behind them. */
+@media (max-width:767.98px) and (orientation:portrait){
+.mph-root{min-height:calc(100vw * 2.3)!important;}
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -386,6 +401,8 @@ export default function MascotPortfolioHero({
   headlineScale = 1,
   topRow = true,
   subheading,
+  eyebrow,
+  proof,
   swash = true,
   rules = true,
   index = "08/01",
@@ -652,6 +669,8 @@ export default function MascotPortfolioHero({
           </>
         ) : null}
 
+        {eyebrow ? <div className="mph-eyebrow">{eyebrow}</div> : null}
+
         <h1 className="mph-h1" aria-label={title ?? [year, initials, line2, line3, word && word + bracketed].filter(Boolean).join(" ")}>
           <span className="mph-line" aria-hidden="true">
             {chars(year)}
@@ -739,16 +758,18 @@ export default function MascotPortfolioHero({
         </>
         ) : null}
 
-        {/* display: contents on large screens, so the services row keeps
-            its own absolute position there; below 1024px it stacks the row
-            and the buttons in one flow. */}
+        {/* One flow under the subheading: services (if any), the buttons,
+            then the proof. */}
         <div className="mph-foot">
-          <ul className="mph-services">
-            {services.map((s) => (
-              <li key={s}>{s}</li>
-            ))}
-          </ul>
+          {services.length ? (
+            <ul className="mph-services">
+              {services.map((s) => (
+                <li key={s}>{s}</li>
+              ))}
+            </ul>
+          ) : null}
           {actions ? <div className="mph-cta">{actions}</div> : null}
+          {proof ? <div className="mph-proof">{proof}</div> : null}
         </div>
 
         <button
