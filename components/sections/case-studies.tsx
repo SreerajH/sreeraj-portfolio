@@ -87,7 +87,7 @@ export function CaseStudies() {
                     className="absolute bottom-6 right-6 inline-flex items-center gap-1.5 rounded-full border border-border-hair bg-bg/80 px-3.5 py-1.5 text-xs text-text-muted backdrop-blur transition-colors hover:border-accent hover:text-accent md:bottom-8 md:right-8"
                   >
                     <Download className="h-3.5 w-3.5" />
-                    Android demo
+                    Android APK
                   </a>
                 ) : null}
               </FadeIn>

@@ -139,6 +139,26 @@ export default async function CaseStudyPage(
             </p>
           </FadeIn>
 
+          {/* The walkthrough is the main demo once it exists: most reviewers
+              won't install an APK, and iPhones can't. */}
+          {study.video ? (
+            <FadeIn y={12} delay={0.18} className="mt-10">
+              <figure className="overflow-hidden rounded-2xl border border-border-hair bg-bg-elev">
+                <video
+                  src={study.video.src}
+                  poster={study.video.poster}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="aspect-video w-full bg-black object-contain"
+                />
+                {study.video.caption ? (
+                  <figcaption className="px-5 py-3 text-xs text-text-muted">{study.video.caption}</figcaption>
+                ) : null}
+              </figure>
+            </FadeIn>
+          ) : null}
+
           {study.links?.length ? (
             <FadeIn y={12} delay={0.2} className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               {study.links.map((l) => (
@@ -147,7 +167,7 @@ export default async function CaseStudyPage(
                     href={l.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-[#0A0A0A] shadow-[0_0_0_0_rgba(200,255,0,0)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-8px_rgba(200,255,0,0.55)]"
+                    className="group inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-medium text-text transition-colors duration-300 hover:border-accent hover:text-accent"
                   >
                     <Download className="h-4 w-4" />
                     {l.label}

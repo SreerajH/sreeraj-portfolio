@@ -7,6 +7,12 @@ export type CaseStudy = {
   tagline: string;
   meta: Array<{ label: string; value: string }>;
   links?: Array<{ label: string; href: string; note?: string }>;
+  /**
+   * A short screen recording of the app in use, shown above the links. Most
+   * reviewers won't install an APK, so this is the main demo once it exists.
+   * Put the file in /public, e.g. "/projects/healthhub-v2/walkthrough.mp4".
+   */
+  video?: { src: string; poster?: string; caption?: string };
   /** The project's own brand colours, used for the hero panel and swatches. */
   brand: { primary: string; tint: string };
   hero: Screen[];
@@ -49,9 +55,11 @@ export const caseStudies: Record<string, CaseStudy> = {
       { label: "Platform", value: "Android, iOS and web (Expo)" },
       { label: "Type", value: "Self-initiated concept" },
     ],
+    // TODO(Sreeraj): record a 60–90s walkthrough of the main flow and add it:
+    // video: { src: "/projects/healthhub-v2/walkthrough.mp4", poster: "/projects/healthhub-v2/home.webp", caption: "60-second walkthrough" },
     links: [
       {
-        label: "Install the Android demo",
+        label: "Android demo (APK)",
         href: "https://expo.dev/accounts/sreerajh/projects/healthhub/builds/b35526d4-75e7-4168-b37f-1922fb397516",
         note: "Tap “Try the demo” on the sign-in screen. Sample data only.",
       },
@@ -63,9 +71,9 @@ export const caseStudies: Record<string, CaseStudy> = {
       { src: HH("doctor-book"), alt: "HealthHub slot picker for a paediatrician with Kabir selected" },
     ],
     tldr: [
+      { value: "4", label: "Assumptions written down before any screen" },
+      { value: "9", label: "Must-fix issues from a design review, all fixed before shipping" },
       { value: "37", label: "Screens designed and built" },
-      { value: "13", label: "Database tables, all with row-level security" },
-      { value: "5", label: "Server functions for booking, export and deletion" },
       { value: "1 tap", label: "Demo sign-in on a real APK" },
     ],
     context: {
@@ -242,9 +250,11 @@ export const caseStudies: Record<string, CaseStudy> = {
       { label: "Platform", value: "Android, iOS and web (Expo)" },
       { label: "Type", value: "Self-initiated concept" },
     ],
+    // TODO(Sreeraj): record a 60–90s walkthrough of the main flow and add it:
+    // video: { src: "/projects/wayfare-v2/walkthrough.mp4", poster: "/projects/wayfare-v2/home.webp", caption: "60-second walkthrough" },
     links: [
       {
-        label: "Install the Android demo",
+        label: "Android demo (APK)",
         href: "https://expo.dev/artifacts/eas/8p7EdVSZGV-nvEvOSIA4q9m3WpIBZF1HPAx9MU7yYII.apk",
         note: "Browse as a guest, or sign in with an email code to book.",
       },
@@ -256,9 +266,9 @@ export const caseStudies: Record<string, CaseStudy> = {
       { src: WF("experience-2"), alt: "Wayfare day-by-day itinerary" },
     ],
     tldr: [
-      { value: "28", label: "Figma screens redesigned or added" },
+      { value: "9", label: "v1 screens rebuilt after critiquing my own concept" },
       { value: "19", label: "Screens built in Expo" },
-      { value: "1", label: "Server-priced booking flow" },
+      { value: "4", label: "Assumptions written down before any screen" },
       { value: "OTA", label: "Design updates without a reinstall" },
     ],
     context: {
@@ -376,7 +386,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       metrics: [
         { value: "28", label: "Figma screens redesigned" },
         { value: "19", label: "Screens built" },
-        { value: "0", label: "Prices trusted from the client" },
+        { value: "Server", label: "Sets every price; the app never sends one" },
       ],
       next: [
         "Test the booking path with five travellers and time each step",

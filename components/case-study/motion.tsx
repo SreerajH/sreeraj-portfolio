@@ -18,28 +18,53 @@ export function ScrollProgress() {
 
 /**
  * Counts a figure up from 0 the first time it scrolls into view.
- * Anything that isn't a plain integer ("1 tap", "OTA") is shown as-is.
+ * The real value is what the server renders, so crawlers, link previews and
+ * anyone without JavaScript never see a 0. Figures already on screen at load
+ * just stay put. Anything that isn't a plain integer ("1 tap", "OTA") is
+ * shown as-is.
  */
 export function CountUp({ value, className }: { value: string; className?: string }) {
   const ref = React.useRef<HTMLParagraphElement>(null);
+  const armed = React.useRef(false);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const reduce = useReducedMotion();
   const target = /^\d+$/.test(value) ? Number(value) : null;
-  const [shown, setShown] = React.useState(target === null || reduce ? value : "0");
+
+  // Before paint: only figures still below the fold are reset to 0, so the
+  // count-up is never a visible jump backwards. Written to the DOM directly,
+  // so React's rendered text stays the real value.
+  React.useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el || target === null || reduce) return;
+    if (el.getBoundingClientRect().top > window.innerHeight) {
+      el.textContent = "0";
+      armed.current = true;
+    }
+  }, [target, reduce]);
 
   React.useEffect(() => {
-    if (!inView || target === null || reduce) return;
+    const el = ref.current;
+    if (!inView || !el || target === null || !armed.current) return;
+    armed.current = false;
     const controls = animate(0, target, {
       duration: Math.min(1.6, 0.6 + target / 40),
       ease: [0.16, 1, 0.3, 1],
-      onUpdate: (v) => setShown(String(Math.round(v))),
+      onUpdate: (v) => {
+        el.textContent = String(Math.round(v));
+      },
+      onComplete: () => {
+        el.textContent = value;
+      },
     });
-    return () => controls.stop();
-  }, [inView, target, reduce]);
+    return () => {
+      controls.stop();
+      el.textContent = value;
+    };
+  }, [inView, target, value]);
 
   return (
     <p ref={ref} className={className} aria-label={value}>
-      {shown}
+      {value}
     </p>
   );
 }
