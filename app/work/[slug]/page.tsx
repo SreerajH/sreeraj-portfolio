@@ -74,11 +74,12 @@ function Phone({
       <img
         src={screen.src}
         alt={screen.alt}
-        width={390}
-        height={844}
+        // v2 captures carry a 54pt status bar (390×898); the v1 Figma exports are 393×852.
+        width={screen.src.includes("-v2/") ? 390 : 393}
+        height={screen.src.includes("-v2/") ? 898 : 852}
         loading={eager ? "eager" : "lazy"}
         decoding="async"
-        className="block aspect-[390/844] h-auto w-full rounded-[1.6rem] object-cover object-top"
+        className="block h-auto w-full rounded-[1.6rem]"
       />
     </div>
   );
