@@ -31,6 +31,8 @@ export type TumbleCard = {
   meta?: string;
   /** A small pill after the meta line, e.g. "Concept". */
   badge?: string;
+  /** An accent pill that marks the card as a different kind of work, e.g. "Case study". */
+  tag?: string;
   href?: string;
   /** Opens `href` in a new tab. */
   external?: boolean;
@@ -367,12 +369,17 @@ export default function TumbleDeckShowcase({
             <h3 className="font-condensed text-4xl uppercase leading-[0.95] text-text xl:text-5xl">
               {current.title}
             </h3>
-            {current.meta || current.badge ? (
+            {current.meta || current.badge || current.tag ? (
               <p className="eyebrow mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 lg:justify-start">
                 {current.meta}
                 {current.badge ? (
                   <span className="rounded-full border border-white/20 bg-black/40 px-3 py-1 text-[0.65rem] uppercase tracking-[0.15em] text-white">
                     {current.badge}
+                  </span>
+                ) : null}
+                {current.tag ? (
+                  <span className="rounded-full bg-accent px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-[#0A0A0A]">
+                    {current.tag}
                   </span>
                 ) : null}
               </p>

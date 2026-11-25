@@ -124,8 +124,8 @@ export const projects: Project[] = [
     category: "Concept",
     description:
       "Travel app redesigned from my own v1 concept, then built end to end with server-priced booking.",
-    thumbnail: "/projects/wayfare.jpg",
-    thumbnailAlt: "Wayfare travel app home and Tokyo destination screens on three phones",
+    thumbnail: "/projects/wayfare-case.jpg",
+    thumbnailAlt: "Wayfare case study: Tokyo destination, home and day-by-day itinerary screens on three phones",
     liveUrl: null,
     caseStudyUrl: "/work/wayfare",
     tech: ["Figma", "Expo", "Supabase"],
@@ -141,8 +141,8 @@ export const projects: Project[] = [
     category: "Concept",
     description:
       "Family health app designed in Figma, then built and shipped as a working Android app.",
-    thumbnail: "/projects/healthyhub.jpg",
-    thumbnailAlt: "HealthHub family health app home and profiles screens on three phones",
+    thumbnail: "/projects/healthhub-case.jpg",
+    thumbnailAlt: "HealthHub case study: records, home with family switcher and family profiles on three phones",
     liveUrl: null,
     caseStudyUrl: "/work/healthhub",
     tech: ["Figma", "Expo", "Supabase"],

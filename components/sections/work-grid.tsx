@@ -24,7 +24,13 @@ const DECK_CARDS: TumbleCard[] = projects.map((p) => ({
   external: Boolean(p.liveUrl),
   meta: `${p.platform} · ${p.year}`,
   badge: p.category,
+  tag: isCaseStudy(p) ? "Case study" : undefined,
 }));
+
+/** Design-and-build write-ups (no live site to visit) rather than deployed web projects. */
+function isCaseStudy(p: (typeof projects)[number]) {
+  return Boolean(p.caseStudyUrl) && !p.liveUrl;
+}
 
 export function WorkGrid() {
   return (
@@ -90,10 +96,13 @@ export function WorkGrid() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-bg/95 via-bg/20 to-transparent" />
 
-                      <span className="absolute left-5 top-5 flex gap-2">
-                        <span className={PILL}>{p.platform}</span>
-                        <span className={PILL}>{p.category}</span>
-                      </span>
+                      {/* Case-study thumbnails carry their own "Case study" label in this corner. */}
+                      {isCaseStudy(p) ? null : (
+                        <span className="absolute left-5 top-5 flex gap-2">
+                          <span className={PILL}>{p.platform}</span>
+                          <span className={PILL}>{p.category}</span>
+                        </span>
+                      )}
 
                       <span className="absolute right-5 top-5 text-[0.65rem] uppercase tracking-[0.15em] text-white/60">
                         {p.year}
