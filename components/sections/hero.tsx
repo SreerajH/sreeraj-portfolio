@@ -1,13 +1,8 @@
-import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import MascotPortfolioHero from "@/components/ui/mascot-portfolio-hero";
 import { SectionLink } from "@/components/layout/nav-links";
-import { caseStudyProjects } from "@/lib/projects";
 
 export function Hero() {
-  // The first case study doubles as proof on the first screen.
-  const lead = caseStudyProjects[0];
-
   return (
     // The navbar is fixed over the top 4rem; start the poster under it.
     <section className="pt-16">
@@ -61,40 +56,7 @@ export function Hero() {
             >
               Resume &amp; links
             </SectionLink>
-            {/* Freelance stays one click away, but second. */}
-            <SectionLink
-              id="start-project"
-              className="inline-flex min-h-11 items-center text-sm font-medium text-text-muted underline decoration-white/25 underline-offset-4 transition-colors hover:text-accent"
-            >
-              Freelance project? Let&apos;s talk
-            </SectionLink>
           </>
-        }
-        proof={
-          lead ? (
-            <Link
-              href={lead.caseStudyUrl ?? `/work/${lead.slug}`}
-              className="group flex items-center gap-4 rounded-2xl border border-white/12 bg-black/40 p-2.5 pr-4 backdrop-blur-md transition-colors hover:border-accent"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={lead.thumbnail}
-                alt=""
-                width={96}
-                height={60}
-                className="hidden h-[60px] w-[96px] shrink-0 min-[360px]:block rounded-xl object-cover"
-              />
-              <span className="min-w-0 flex-1">
-                <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-accent">
-                  Latest case study
-                </span>
-                <span className="mt-1 block text-sm leading-snug text-text">
-                  {lead.name}: designed in Figma, shipped as an Android app
-                </span>
-              </span>
-              <ArrowUpRight className="h-4 w-4 shrink-0 text-text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
-            </Link>
-          ) : null
         }
         greetings={[
           "Hi, I'm Sreeraj!",

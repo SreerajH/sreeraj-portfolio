@@ -370,10 +370,10 @@ const CSS = `
 }
 }
 
-/* Phones: a taller poster, so the character sits under the buttons and the
-   proof card instead of behind them. */
+/* Phones: tall enough that the character sits under the buttons, not behind them. */
 @media (max-width:767.98px) and (orientation:portrait){
-.mph-root{min-height:calc(100vw * 2.3)!important;}
+.mph-root{min-height:calc(100vw * 1.75 + 100px)!important;}
+.mph-char{left:22%;width:56%;}
 }
 
 @media (prefers-reduced-motion: reduce){
