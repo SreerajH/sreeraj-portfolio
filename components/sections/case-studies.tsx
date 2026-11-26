@@ -35,14 +35,19 @@ export function CaseStudies() {
                   data-cursor="view"
                   className="flex h-full flex-col overflow-hidden rounded-3xl border border-border-hair bg-bg-elev transition-[border-color,transform] duration-500 hover:-translate-y-1 hover:border-white/20"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={p.thumbnail}
-                      alt={p.thumbnailAlt}
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                    />
+                  <div className="relative aspect-[6/5] overflow-hidden md:aspect-[16/10]">
+                    <picture>
+                      {p.thumbnailMobile ? (
+                        <source media="(max-width: 767px)" srcSet={p.thumbnailMobile} />
+                      ) : null}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={p.thumbnail}
+                        alt={p.thumbnailAlt}
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      />
+                    </picture>
                   </div>
 
                   <div className="flex flex-1 flex-col p-6 md:p-8">

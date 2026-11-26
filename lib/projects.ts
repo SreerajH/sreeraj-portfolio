@@ -14,6 +14,8 @@ export type Project = {
   category: ProjectCategory;
   description: string;
   thumbnail: string;
+  /** Taller crop (6:5) used on phones, where the wide thumbnail's devices get too small. */
+  thumbnailMobile?: string;
   /** Describes the thumbnail for screen readers and search. */
   thumbnailAlt: string;
   /** Live demo deployment, or null for design-only case studies. */
@@ -125,6 +127,7 @@ export const projects: Project[] = [
     description:
       "Travel app redesigned from my own v1 concept, then built end to end with server-priced booking.",
     thumbnail: "/projects/wayfare-case.jpg",
+    thumbnailMobile: "/projects/wayfare-case-m.jpg",
     thumbnailAlt: "Wayfare case study: Tokyo destination, home and day-by-day itinerary screens on three phones",
     liveUrl: null,
     caseStudyUrl: "/work/wayfare",
@@ -142,6 +145,7 @@ export const projects: Project[] = [
     description:
       "Family health app designed in Figma, then built and shipped as a working Android app.",
     thumbnail: "/projects/healthhub-case.jpg",
+    thumbnailMobile: "/projects/healthhub-case-m.jpg",
     thumbnailAlt: "HealthHub case study: records, home with family switcher and family profiles on three phones",
     liveUrl: null,
     caseStudyUrl: "/work/healthhub",
