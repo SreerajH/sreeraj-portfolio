@@ -49,7 +49,7 @@ export function Navbar() {
           />
         </HomeLink>
 
-        <ul className="hidden items-center gap-10 md:flex">
+        <ul className="hidden items-center gap-10 lg:flex">
           {SECTIONS.map((s) => (
             <li key={s.id}>
               <SectionLink
@@ -65,21 +65,21 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <SectionLink
             id="contact"
-            className="hidden rounded-full border border-white/20 px-4 py-2.5 text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent md:inline-block"
+            className="hidden rounded-full border border-white/20 px-4 py-2.5 text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent lg:inline-block"
           >
             Let&apos;s talk
           </SectionLink>
           {/* The primary action: resume, GitHub and LinkedIn, for recruiters. */}
           <SectionLink
             id="hire"
-            className="pulse-ring hidden rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[#0A0A0A] transition-colors hover:bg-text md:inline-block"
+            className="pulse-ring hidden rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[#0A0A0A] transition-colors hover:bg-text lg:inline-block"
           >
             Hiring?
           </SectionLink>
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="rounded-full border border-border-hair p-2 text-text md:hidden"
+            className="rounded-full border border-border-hair p-2 text-text lg:hidden"
             aria-label="Open menu"
           >
             <Menu className="h-4 w-4" />
@@ -94,7 +94,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 flex flex-col bg-bg md:hidden"
+            className="fixed inset-0 z-50 flex flex-col bg-bg lg:hidden"
           >
             <div className="flex h-16 items-center justify-between px-6">
               <HomeLink

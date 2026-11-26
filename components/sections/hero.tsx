@@ -82,7 +82,7 @@ export function Hero() {
                 alt=""
                 width={96}
                 height={60}
-                className="h-[60px] w-[96px] shrink-0 rounded-xl object-cover"
+                className="hidden h-[60px] w-[96px] shrink-0 min-[360px]:block rounded-xl object-cover"
               />
               <span className="min-w-0 flex-1">
                 <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-accent">

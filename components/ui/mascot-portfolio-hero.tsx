@@ -334,7 +334,7 @@ const CSS = `
 
 /* The eyebrow, and one stacked flow under the subheading: services (if any),
    the buttons, then the proof. Set in px so the buttons keep their tap size. */
-.mph-eyebrow{position:absolute;left:6.5%;right:30%;top:10.5%;display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;z-index:2;}
+.mph-eyebrow{position:absolute;left:6.5%;right:20%;top:10.5%;display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;z-index:2;}
 .mph-foot{position:absolute;left:6.5%;top:73%;display:flex;flex-direction:column;align-items:flex-start;gap:16px;z-index:2;}
 .mph-foot .mph-services{position:static;}
 .mph-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;}
